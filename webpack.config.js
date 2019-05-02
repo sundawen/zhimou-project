@@ -2,18 +2,18 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
-  entry: __dirname+'/src/main.jsx',
+  entry: {
+    vendor: ['babel-polyfill',
+      path.resolve(__dirname, './src/fonts/iconfont/iconfont.js'),
+    ],
+    bundle: [path.resolve(__dirname, './src/main.jsx')],
+  },
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: 'main.jsx'
   },
   module: {
     rules: [
-      {
-        test: /\.css$/,
-        exclude: [/node_module/],
-        use: [{ loader: 'style-loader' }, { loader: 'css-loader' }],
-      },
       {
         test: /\.(ico|png|jpg|jpeg|mp4|gif|mov)$/,
         use: [{
@@ -23,6 +23,7 @@ module.exports = {
           },
         }],
       },
+      { test: /\.(obj|glb|eot|woff|woff2|svg|ttf|otf)$/, use: 'file-loader' },
       {
         test: /\.js|jsx$/,
         exclude: [/node_module/, /third-party/, /\.json$/],
@@ -33,8 +34,37 @@ module.exports = {
           },
         }],
       },
-
-    ]
+      {
+        test: /\.css$/,
+        use: [{ loader: 'style-loader' }, { loader: 'css-loader' }, { loader: 'postcss-loader' }],
+      },
+      {
+        test: /\.scss$/,
+        use: [
+          {
+            loader: 'style-loader',
+          },
+          {
+            loader: 'css-loader',
+            options: {
+              modules: true,
+              importLoaders: 1,
+              localIdentName: '[name]_[local]__[hash:base64:5]',
+            },
+          },
+          { loader: 'postcss-loader' },
+          {
+            loader: 'sass-loader',
+            options: {
+              modules: true,
+              importLoaders: 1,
+              localIdentName: '[name]_[local]__[hash:base64:5]',
+            },
+          },
+        ],
+      },
+      { test: /\.html$/, use: 'html-loader' },
+    ],
   },
   resolve: {
     extensions: ['*', '.js', '.jsx'],

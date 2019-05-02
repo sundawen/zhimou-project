@@ -1,4 +1,127 @@
-.font-c {
-    font-size: 20px;
-    color: green; 
+html,
+body {
+    /*width: 100%;*/
+    /* height: 100%; */
+    margin: 0;
+    padding: 0;
+    font-size: 16px;
+    -webkit-tap-highlight-color: rgba(255,0,0,0);
+    /*overflow-x: hidden;*/
+}
+* {
+    /* box-sizing: border-box; */
+    padding: 0;
+    margin: 0;
+}
+canvas {
+    display: block;
+}
+p {
+    margin: 0;
+}
+
+.router-appear {
+    opacity: 0;
+    transition: all 3s ease;
+}
+
+.router-appear.router-appear-active {
+    opacity: 1;
+}
+
+.router-enter {
+    opacity: 0;
+    transition: all 3s ease;
+}
+
+.router-enter.router-enter-active {
+    opacity: 1;
+}
+
+.router-leave {
+    opacity: 0;
+    transition: all 3s ease;
+}
+
+.router-leave.router-leave-active {
+    opacity: 1;
+}
+
+::-ms-clear {
+    display: none;
+}
+
+/* user defined font family */
+
+ @font-face {
+    font-family: 'Montserrat-Regular';
+    src: url('../fonts/Montserrat-Regular.otf');
+}
+
+@font-face {
+    font-family: 'MFLiHei_Noncommercial-Regular';
+    src: url('../fonts/MFLiHei_Noncommercial-Regular.otf');
+}
+
+@font-face {
+    font-family: 'Roboto-Medium';
+    src: url('../fonts/Roboto-Medium.ttf');
+}
+
+@font-face {
+    font-family: 'Roboto-Light';
+    src: url('../fonts/Roboto-Light.ttf');
+}
+
+@font-face {
+    font-family: 'Roboto-Regular';
+    src: url('../fonts/Roboto-Regular.ttf');
+}
+
+@font-face {
+    font-family: 'Roboto-Thin';
+    src: url('../fonts/Roboto-Thin.ttf');
+}
+
+@font-face {
+    font-family: 'Roboto-Condensed';
+    src: url('../fonts/Roboto-Condensed.ttf');
+}
+
+@font-face {
+    font-family: 'MFYueYuan_Noncommercial-Regular';
+    src: url('../fonts/MFYueYuan_Noncommercial-Regular.otf');
+}
+
+@font-face {
+    font-family: 'Gotham-Light';
+    src: url('../fonts/Gotham-Light.otf');
+}
+
+@font-face {
+    font-family: 'Gotham-Medium';
+    src: url('../fonts/GothamMedium.otf');
+}
+
+@font-face {
+  font-family: 'Montserrat-Bold';
+  src: url('../fonts/Montserrat-Bold.otf');
+}
+
+@font-face {
+  font-family: 'iconfont';
+  src: url('../fonts/iconfont/iconfont.eot');
+  src: url('../fonts/iconfont/iconfont.eot?#iefix') format('embedded-opentype'),
+  url('../fonts/iconfont/iconfont.woff') format('woff'),
+  url('../fonts/iconfont/iconfont.ttf') format('truetype'),
+  url('../fonts/iconfont/iconfont.svg#iconfont') format('svg');
+}
+
+.iconfont {
+    font-family: "iconfont" !important;
+    font-size: 16px;
+    font-style: normal;
+    -webkit-font-smoothing: antialiased;
+    -webkit-text-stroke-width: 0.2px;
+    -moz-osx-font-smoothing: grayscale;
 }
