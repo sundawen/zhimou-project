@@ -1,0 +1,100 @@
+$tabLevel1FontColor: #3f51b5;
+// $tabLevel1FontColor: rgba(0, 0, 255, .5);
+$tabLevel1FontSize: 16px;
+$tabLevel1Height: 50px;
+$tabLevel1FontWeight: 600;
+$tabLevel1LineHeight: $tabLevel1Height;
+$dropdownHeight: 25px;
+// $navHeight: 70px; // to fit nav version 1.0
+$navHeight: 60px; // this is version 2.0
+.leftSideBar {
+    width: 232px;
+    height: 100%;
+    box-sizing: border-box;
+    float: left;
+    position: relative;
+    box-shadow: -5px 0px 15px black;
+    z-index: 2;
+    background-color: #f9f9f9;
+    padding-top: 20px;
+    .tabWrapper {
+      position: relative;
+      border-bottom: 1px solid #F5F5F5;
+      background-color: #ffffff;
+      .level1 {
+        padding: 0 35px 0 20px;
+        width: 100%;
+        position: relative;
+        height: $tabLevel1Height;
+        line-height: $tabLevel1LineHeight;
+        color: $tabLevel1FontColor;
+        font-size: $tabLevel1FontSize;
+        color: #71777C;
+        cursor: pointer;
+        box-sizing: border-box;
+        border-bottom: 1px solid white;
+        transition: all .2s ease;
+        font-family:"Roboto-Medium";
+        overflow:hidden;
+        white-space:nowrap;
+        text-overflow:ellipsis;
+        &:hover {
+          color: white;
+          background-color: $tabLevel1FontColor;
+        }
+        i {
+          position: absolute;
+          right: 15px;
+          transition: transform .3s ease;
+          transform: rotateZ(-90deg);
+        }
+        .active {
+          transform: rotateZ(0) !important;
+        }
+      }
+      .level1Active {
+        color: white;
+        background-color: $tabLevel1FontColor;
+      }
+      .level2Wrapper {
+        // height: 0;
+        max-height: 0;
+        overflow: hidden;
+        transition: all .5s ease;
+        .level2 {
+          font-size: 14px;
+          height: 40px;
+          line-height: 40px;
+          color: #666666;
+          box-sizing: border-box;
+          padding: 0 30px;
+          cursor: pointer;
+          transition: all .2s ease;
+          list-style-type: none;
+          font-family: "Roboto-Regular";
+          border-bottom: 1px solid #FFFFFF;
+          overflow: hidden;
+          white-space: nowrap;
+          text-overflow: ellipsis;
+          &:hover {
+            background-color: #eaeaea;
+          }
+        }
+        .level2ItemActive {
+          background-color: #dbdbdb;
+        }
+      }
+      .level2Active {
+        max-height: calc(100vh - 436px);
+        overflow-y: auto;
+      }
+      .level3Active {
+        height: 0;
+      }
+      .hr{
+        width: 194px;
+        margin-left: 38px;
+        border-top:1px solid #f4f4f4;
+      }
+    }
+  }
