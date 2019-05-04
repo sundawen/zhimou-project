@@ -24,15 +24,15 @@ class NavDev extends React.Component {
     return (
       <nav className={styles.nav}>
         <div className={styles.left}>
-          <NavLink exact to='/homePage'>
+          <NavLink exact to='/video'>
             <ImgVMiddle style={{ width: '180px', height: '60px' }} image={LENOVOLOGO} alt="logo" />
           </NavLink>
         </div>
         <div>
           {this.state.showDashboard ?
             <div className={styles.middle} onClick={() => { window.location.reload() }}>
-              <NavLink exact to='/homePage'>
-                Dashboard
+              <NavLink exact to='/video'>
+                联想智眸AI视频处理
               </NavLink>
             </div> : null
           }

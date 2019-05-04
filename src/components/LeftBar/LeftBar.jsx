@@ -11,7 +11,7 @@ class LeftBar extends React.Component {
     }
   }
   render() {
-    const leftList = this.props.leftList
+    const leftList = {'实时视频':1, '历史记录':2}
     return (
       <div className={styles.leftSideBar}>
         <QueueAnim
@@ -30,7 +30,7 @@ class LeftBar extends React.Component {
                         [styles.level1]: true,
                         [styles.level1Active]: this.props.level1Active === item,
                       })}
-                      data-value={item}
+                      // data-value={item}
                       title={item}
                     >
                       {item}

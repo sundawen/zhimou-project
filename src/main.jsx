@@ -17,30 +17,30 @@ const Video = Loadable({
     loader: () => import('./containers/Video/Video'),
     loading: Loading,
 })
-const NavDev = Loadable({
-  loader: () => import('./containers/NavDev/NavDev'),
+const Chart = Loadable({
+  loader: () => import('./containers/Chart/Chart'),
   loading: Loading,
 })
 
-  const Parent = () => (
-    <div>
-      <Route path="*" component={NavDev} />
-      <Route path="/" component={Video} />
-    </div>
-  )
+const Parent = () => (
+  <div>
+    <Route path="/chart" component={Chart} />
+    <Route path="/video" component={Video} />
+    <Route exact path="/" component={Video} />
+  </div>
+)
 
 ReactDOM.render(
-    <AppContainer>
+  <AppContainer>
     <Provider store={store}>
       <HashRouter basename="" history={BrowserHistory}>
         <div>
           <Switch>
-            <Route path="/video" component={Video} />
             <Route path="/" component={Parent} />
           </Switch>
         </div>
       </HashRouter>
     </Provider>
   </AppContainer>
-  , document.getElementById('app')
+  , document.getElementById('app'),
 )
