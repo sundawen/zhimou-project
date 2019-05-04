@@ -17,44 +17,4 @@ $navHeight: 60px; // this is version 2.0
     z-index: 2;
     background-color: #f9f9f9;
     padding-top: 20px;
-    .tabWrapper {
-      position: relative;
-      border-bottom: 1px solid #F5F5F5;
-      background-color: #ffffff;
-      .level1 {
-        padding: 0 35px 0 20px;
-        width: 100%;
-        position: relative;
-        height: $tabLevel1Height;
-        line-height: $tabLevel1LineHeight;
-        color: $tabLevel1FontColor;
-        font-size: $tabLevel1FontSize;
-        color: #71777C;
-        cursor: pointer;
-        box-sizing: border-box;
-        border-bottom: 1px solid white;
-        transition: all .2s ease;
-        font-family:"Roboto-Medium";
-        overflow:hidden;
-        white-space:nowrap;
-        text-overflow:ellipsis;
-        &:hover {
-          color: white;
-          background-color: $tabLevel1FontColor;
-        }
-        i {
-          position: absolute;
-          right: 15px;
-          transition: transform .3s ease;
-          transform: rotateZ(-90deg);
-        }
-        .active {
-          transform: rotateZ(0) !important;
-        }
-      }
-      .level1Active {
-        color: white;
-        background-color: $tabLevel1FontColor;
-      }
-    }
   }
