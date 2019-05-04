@@ -12,13 +12,19 @@ import './app.css'
 
 addLocaleData([...en, ...zh])
 const Loading = () => (<div />)
+
 const Video = Loadable({
-    loader: () => import('./components/Video/Video'),
+    loader: () => import('./containers/Video/Video'),
     loading: Loading,
-  })
+})
+const NavDev = Loadable({
+  loader: () => import('./containers/NavDev/NavDev'),
+  loading: Loading,
+})
 
   const Parent = () => (
     <div>
+      <Route path="*" component={NavDev} />
       <Route path="/" component={Video} />
     </div>
   )

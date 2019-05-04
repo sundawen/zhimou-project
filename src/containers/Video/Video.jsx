@@ -13,7 +13,7 @@ class Video extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      leftList: {'a':1, 'b':2},
+      leftList: {'实时监控':1, '历史记录':2},
       channelList: null,
     }
   }

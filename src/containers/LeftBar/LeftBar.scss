@@ -56,45 +56,5 @@ $navHeight: 60px; // this is version 2.0
         color: white;
         background-color: $tabLevel1FontColor;
       }
-      .level2Wrapper {
-        // height: 0;
-        max-height: 0;
-        overflow: hidden;
-        transition: all .5s ease;
-        .level2 {
-          font-size: 14px;
-          height: 40px;
-          line-height: 40px;
-          color: #666666;
-          box-sizing: border-box;
-          padding: 0 30px;
-          cursor: pointer;
-          transition: all .2s ease;
-          list-style-type: none;
-          font-family: "Roboto-Regular";
-          border-bottom: 1px solid #FFFFFF;
-          overflow: hidden;
-          white-space: nowrap;
-          text-overflow: ellipsis;
-          &:hover {
-            background-color: #eaeaea;
-          }
-        }
-        .level2ItemActive {
-          background-color: #dbdbdb;
-        }
-      }
-      .level2Active {
-        max-height: calc(100vh - 436px);
-        overflow-y: auto;
-      }
-      .level3Active {
-        height: 0;
-      }
-      .hr{
-        width: 194px;
-        margin-left: 38px;
-        border-top:1px solid #f4f4f4;
-      }
     }
   }
