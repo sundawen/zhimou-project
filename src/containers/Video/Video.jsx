@@ -4,7 +4,6 @@ import { connect } from 'react-redux'
 import { injectIntl } from 'react-intl'
 import { bindActionCreators } from 'redux'
 // components
-import Sider from '../../components/LeftBar/LeftBar'
 import Header from '../../components/Head/Head'
 import Foot from '../../components/Foot/Foot'
 import VideoBox1 from '../Video/V1/VideoBox1'
@@ -30,7 +29,6 @@ class Video extends React.Component {
   render() {
     return (
       <Layout>
-        <Sider/>
         <Layout>
           <Header/>
           <VideoBox1/>

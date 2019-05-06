@@ -1,13 +1,42 @@
-.wrapper{
+.wrapper {
     margin: '24px 16px 0';
     .mainBody{
         background: '#fff';
-        min-height: 400px;
+        min-height: 420px;
         .mainCard {
             background-color:'#ECECEC';
             padding: 15px;
             .cardHeight {
-                height: 278px;
+                height: 285px;
+                flex: 2;
+                min-height: 100%;
+                .boxImg {
+                    object-fit: fill;
+                    width: 100%;
+                    height: 180px;
+                }
+                .video{
+                    width:100%;
+                    min-height: 100%;
+                    object-fit: fill;
+                }
+                .noCursor{
+                    cursor: default;
+                }
+                ul {
+                    margin-top: 14px;
+                    font-feature-settings: "tnum";
+                    list-style: none;
+                  }
+                  li {
+                    color: rgba(0,0,0,.65);
+                    font-size: 14px;
+                    line-height: 35px;
+                    height: 35px;
+                  }
+                    label {
+                        padding-right: 20px;
+                    }
             }
         }
     }
