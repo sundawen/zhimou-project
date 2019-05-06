@@ -1,0 +1,14 @@
+.wrapper {
+    margin: '24px 16px 0';
+    .mainBody{
+        background: '#fff';
+        min-height: 400px;
+        .mainCard {
+            background-color:'#ECECEC';
+            padding: 15px;
+            .cardHeight {
+                height: 278px;
+            }
+        }
+    }
+}

@@ -5,8 +5,12 @@ import { injectIntl } from 'react-intl'
 import { bindActionCreators } from 'redux'
 // components
 import Sider from '../../components/LeftBar/LeftBar'
-import NavDev from '../../components/NavDev/NavDev'
+import Header from '../../components/Head/Head'
+import Foot from '../../components/Foot/Foot'
+import VideoBox1 from '../Video/V1/VideoBox1'
+import VideoBox2 from '../Video/V2/VideoBox2'
 import { getChannelList } from '../../actions/apps'
+import { Layout } from 'antd';
 // css
 import styles from './Video.scss'
 
@@ -25,13 +29,15 @@ class Video extends React.Component {
 
   render() {
     return (
-      <div style={{ height: '100vh', overflow: 'hidden' }}>
-        <div className={styles.wrapper}>
-          <Sider/>
-                vvvvvvvvvvvvvvvvvvvvvv
-        </div>
-        <NavDev/>
-      </div>
+      <Layout>
+        <Sider/>
+        <Layout>
+          <Header/>
+          <VideoBox1/>
+          <VideoBox2/>
+          <Foot />
+        </Layout>
+      </Layout>
     )
   }
 }

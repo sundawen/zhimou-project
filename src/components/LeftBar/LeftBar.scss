@@ -1,20 +1,5 @@
-$tabLevel1FontColor: #3f51b5;
-// $tabLevel1FontColor: rgba(0, 0, 255, .5);
-$tabLevel1FontSize: 16px;
-$tabLevel1Height: 50px;
-$tabLevel1FontWeight: 600;
-$tabLevel1LineHeight: $tabLevel1Height;
-$dropdownHeight: 25px;
-// $navHeight: 70px; // to fit nav version 1.0
-$navHeight: 60px; // this is version 2.0
-.leftSideBar {
-    width: 232px;
-    height: 100%;
-    box-sizing: border-box;
-    float: left;
-    position: relative;
-    box-shadow: -5px 0px 15px black;
-    z-index: 2;
-    background-color: #f9f9f9;
-    padding-top: 20px;
-  }
+.logo {
+  height: 32px;
+  background: rgba(255,255,255,.2);
+  margin: 16px;
+}
