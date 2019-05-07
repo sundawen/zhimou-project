@@ -1,1 +1,1 @@
-export const API_CHANNEL = '/start'
+export const API_CHANNEL = 'http://localhost:5555/start?camId=1'

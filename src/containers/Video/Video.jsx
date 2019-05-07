@@ -17,7 +17,10 @@ class Video extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      channelList: null,
+      channelList: {
+        img: '',
+        info: ''
+      },
     }
   }
   componentWillMount = () => {
@@ -26,12 +29,19 @@ class Video extends React.Component {
   componentDidMount = () => {
   }
 
+  componentWillReceiveProps = (nextProps) => {
+    if (this.props.channelList !== nextProps.channelList) {
+      this.setState({ channelList: nextProps.channelList }, () => {
+      })
+    }
+  }
+
   render() {
     return (
       <Layout>
         <Layout>
           <Header/>
-          <VideoBox1/>
+          <VideoBox1 videoBox1Data = {this.state.channelList}/>
           <VideoBox2/>
           <Foot />
         </Layout>

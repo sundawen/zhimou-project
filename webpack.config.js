@@ -1,6 +1,11 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
+const VideoProxyConfig = {
+  target: 'http://localhost:5555',
+  secure: false,
+}
+
 module.exports = {
   entry: {
     vendor: ['babel-polyfill',
@@ -90,5 +95,9 @@ module.exports = {
     inline: true,
     compress: false,
     open: true,
+    proxy: {
+      '/start': VideoProxyConfig,
+      '/stream': VideoProxyConfig,
+    },
   },
 }

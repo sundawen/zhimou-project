@@ -10,31 +10,15 @@ class VideoBox1 extends React.Component {
 
   constructor(props) {
     super(props)
-    this.videoData = [
-      { 'Img': 'img/22.jpeg', 
-        'Info': 
-        { 'Date': '2019-04-30 16:59:42', 
-          'Location': 'Beijing',
-          'CameraID': 'Cam001', 
-          'ProductionLineID': 'BJ_01', 
-          'Model': 'Lenovo Y470', 
-          'SerialNum': 'LBJ00120331CN', 
-          'ErrorType': 'Blue_Screen' } 
-      }
-    ]
+    
     this.state = {
-      videoImg: this.videoData[0].Img,
-      videoCameraID: this.videoData[0].Info.CameraID,
-      videoErrorType: this.videoData[0].Info.ErrorType,
-      videoLocation: this.videoData[0].Info.Location,
-      videoProductionLineID: this.videoData[0].Info.ProductionLineID,
-      videoModel: this.videoData[0].Info.Model,
-      videoSerialNum: this.videoData[0].Info.SerialNum,
-      videoDate: this.videoData[0].Info.Date,
     }
   }
 
     render() {
+      const videoInfo = this.props.videoBox1Data.info
+      const videoImg = this.props.videoBox1Data.img
+      
         return (
           <Content className={styles.wrapper}>
             <div className={styles.mainBody}>
@@ -62,13 +46,13 @@ class VideoBox1 extends React.Component {
                         <Row gutter={16} className={styles.noCursor}>
                           <Col span={11}>
                             <ul>
-                              <li><label>摄像头ID:</label>{this.state.videoCameraID}</li>
-                              <li><label>设备故障类型:</label> {this.state.videoErrorType}</li>
-                              <li><label>生产线ID: </label>{this.state.videoProductionLineID}</li>
-                              <li><label>故障设备型号: </label>{this.state.videoModel}</li>
-                              <li><label>故障设备序列号: </label>{this.state.videoSerialNum}</li>
-                              <li><label>工厂地址: </label>{this.state.videoLocation}</li>
-                              <li><label>故障发生时间: </label>{this.state.videoDate}</li>
+                              <li><label>摄像头ID:</label>{videoInfo.CameraID}</li>
+                              <li><label>设备故障类型:</label> {videoInfo.ErrorType}</li>
+                              <li><label>生产线ID: </label>{videoInfo.production_line}</li>
+                              <li><label>故障设备型号: </label>{videoInfo.Model}</li>
+                              <li><label>故障设备序列号: </label>{videoInfo.SerialNum}</li>
+                              <li><label>工厂地址: </label>{videoInfo.location}</li>
+                              <li><label>故障发生时间: </label>{videoInfo.date}</li>
                             </ul>
                           </Col>
                           <Col span={13}>
@@ -79,7 +63,7 @@ class VideoBox1 extends React.Component {
                               />
                               <Meta
                                 title="异常画面信息"
-                                description={this.state.videoImg}
+                                description={videoImg}
                               />
                             </Card>
                           </Col>
