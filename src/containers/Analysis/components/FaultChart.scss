@@ -1,0 +1,24 @@
+.mainBody {
+  min-height: 420px;
+  .mainCard {
+    padding: 15px;
+    .faultCard {
+      .extraWrap {
+        .opt {
+          display: inline-block;
+          margin-right: 24px;
+          a {
+            color: rgba(0,0,0,.65);
+            margin-left: 24px;
+          }
+          .currentDate {
+            color: #1890ff;
+          }
+        }
+        .picker {
+          width: 256px;
+        }
+      }
+    }
+  }
+}
