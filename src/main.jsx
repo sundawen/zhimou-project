@@ -17,14 +17,14 @@ const Video = Loadable({
     loader: () => import('./containers/Video/Video'),
     loading: Loading,
 })
-const Chart = Loadable({
-  loader: () => import('./containers/Chart/Chart'),
+const Analysis = Loadable({
+  loader: () => import('./containers/Analysis/Analysis'),
   loading: Loading,
 })
 
 const Parent = () => (
   <div>
-    <Route path="/chart" component={Chart} />
+    <Route path="/analysis" component={Analysis} />
     <Route path="/video" component={Video} />
     <Route exact path="/" component={Video} />
   </div>
