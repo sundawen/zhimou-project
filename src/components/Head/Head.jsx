@@ -20,7 +20,7 @@ class Head extends React.Component {
             <div className={styles.middle}>
               <ul>
                 <li><NavLink to="/video" activeClassName={styles.selected}>实时视频</NavLink></li>
-                <li><NavLink to="/chart" activeClassName={styles.selected}>历史记录</NavLink></li>
+                <li><NavLink to="/analysis" activeClassName={styles.selected}>历史记录</NavLink></li>
               </ul>
             </div>
           </nav>
