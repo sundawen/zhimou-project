@@ -2,7 +2,7 @@
 import React from 'react';
 import { injectIntl } from 'react-intl';
 import { Layout, Card, DatePicker, Row, Col } from 'antd';
-import { Chart, Tooltip, Axis, Legend, StackBar } from 'viser-react';
+import { Chart, Tooltip, Axis, Legend, StackBar, Line, Point } from 'viser-react';
 import { getTimeDistance } from '../../../utils/utils';
 import locale from 'antd/lib/date-picker/locale/zh_CN';
 
@@ -48,7 +48,7 @@ class FaultChart extends React.Component {
           start = rangePickerValue[0].format('YYYY-MM-DD'),
           end   = rangePickerValue[1].format('YYYY-MM-DD'),
           camId = this.props.hasOwnProperty('camId') ? this.props.camId : '';
-    let params = '?camId='+camId+'StartTime='+start+'&EndTime='+end;
+    let params = '?camId='+camId+'&StartTime='+start+'&EndTime='+end;
     fetch(apiUrl.fault+params, {method: 'get'}).then(res => res.json()).then(data => {
       let newData = [
         { name: "蓝屏" },
@@ -57,10 +57,10 @@ class FaultChart extends React.Component {
       ];
       let fields = [];
       for (let i in data) {
-        fields.push(data[i].date);
-        newData[0][data[i].date] = data[i].BlueScreen;
-        newData[1][data[i].date] = data[i].Smear;
-        newData[2][data[i].date] = data[i].Tortuosity;
+        fields.push(data[i].Date);
+        newData[0][data[i].Date] = data[i].BlueScreen;
+        newData[1][data[i].Date] = data[i].Smear;
+        newData[2][data[i].Date] = data[i].Tortuosity;
       }
       this.setState({
         faultData  : newData,
@@ -148,6 +148,8 @@ class FaultChart extends React.Component {
                   <Axis />
                   <Legend />
                   <StackBar position="日期*故障数" color="name" />
+                  {/* <Line position="日期*故障数" color="name" /> */}
+                  {/* <Point position="日期*故障数" color="name" size={4} style={{ stroke: '#fff', lineWidth: 1 }} shape="circle"/> */}
                 </Chart>
               </Card>
             </Col>
