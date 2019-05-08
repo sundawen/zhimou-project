@@ -39,9 +39,8 @@ class FaultChart extends React.Component {
       detailsData     : [],
       pagination: {defaultPageSize: 5},
       apiUrl          : {                        // API URL
-        queryHistoryError: 'http://jtopo.cc/historyerror/',
-        queryHistoryErrorDetails: 'http://jtopo.cc/historyerrordetails/',
-        // fault: 'http://10.121.133.29:8888/ancientfalut',
+        queryHistoryError: '/HistoryError',
+        queryHistoryErrorDetails: '/HistoryErrorDetails',
       },
     };
   }
