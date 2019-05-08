@@ -1,17 +1,28 @@
 // vendor
 import React from 'react';
 import { injectIntl } from 'react-intl';
-import { Layout, Card, DatePicker, Row, Col } from 'antd';
-import { Chart, Tooltip, Axis, Legend, StackBar, Line, Point } from 'viser-react';
+import { 
+  Layout, 
+  Card, 
+  DatePicker, 
+  Row, 
+  Col, 
+  Table, 
+  Form, 
+} from 'antd';
+import { Chart, Tooltip, Axis, Legend, StackBar } from 'viser-react';
 import { getTimeDistance } from '../../../utils/utils';
 import locale from 'antd/lib/date-picker/locale/zh_CN';
 
 // css
 import styles from './FaultChart.scss';
 
+const FormItem = Form.Item;
 const Content = Layout;
 const DataSet = require('@antv/data-set');
 const { RangePicker } = DatePicker;
+
+
 
 /**
  * 故障数图表
@@ -22,11 +33,14 @@ class FaultChart extends React.Component {
     super(props);
     this.state = {
       rangePickerValue: getTimeDistance('year'), // 默认时间为一年内
-      loading         : false,                   // 加载中
+      loading         : { card: false, chart: false, table: false},                   // 加载中
       faultData       : [],                      // 故障数据
       faultFields     : [],                      // 故障横坐标字段 - 日期
+      detailsData     : [],
+      pagination: {defaultPageSize: 5},
       apiUrl          : {                        // API URL
-        fault: 'http://10.121.133.29:8888/ancientfalut',
+        queryHistoryError: '/HistoryError',
+        queryHistoryErrorDetails: '/HistoryErrorDetails',
       },
     };
   }
@@ -37,19 +51,21 @@ class FaultChart extends React.Component {
 
   componentDidMount = () => {
     this.getFaultData();
+    this.getHistoryErrorDetailsData();
   }
 
   /**
    * 获取根据当前选择的日期获取故障数据
    */
   getFaultData() {
-    this.setState({loading: true});
-    const { rangePickerValue, apiUrl } = this.state,
-          start = rangePickerValue[0].format('YYYY-MM-DD'),
-          end   = rangePickerValue[1].format('YYYY-MM-DD'),
-          camId = this.props.hasOwnProperty('camId') ? this.props.camId : '';
+    const { rangePickerValue, apiUrl, loading } = this.state,
+    start = rangePickerValue[0].format('YYYY-MM-DD'),
+    end   = rangePickerValue[1].format('YYYY-MM-DD'),
+    camId = this.props.hasOwnProperty('camId') ? this.props.camId : '';
     let params = '?camId='+camId+'&StartTime='+start+'&EndTime='+end;
-    fetch(apiUrl.fault+params, {method: 'get'}).then(res => res.json()).then(data => {
+    loading.card = true;
+    this.setState({loading});
+    fetch(apiUrl.queryHistoryError+params, {method: 'get'}).then(res => res.json()).then(data => {
       let newData = [
         { name: "蓝屏" },
         { name: "拖影" },
@@ -67,11 +83,65 @@ class FaultChart extends React.Component {
         faultFields: fields,
       });
       console.log(this.state.faultData);
-      this.setState({loading: false});
+      loading.card = false;
+      this.setState({loading});
     }).catch(err => {
-      console.log('query statistics data error: ', err);
-      this.setState({loading: false});
+      // 测试代码数据
+      console.log('测试数据');
+      let data = require('./FaultChartData.json');
+      let newData = [
+        { name: "蓝屏" },
+        { name: "拖影" },
+        { name: "变形" },
+      ];
+      let fields = [];
+      for (let i in data) {
+        fields.push(data[i].Date);
+        newData[0][data[i].Date] = data[i].BlueScreen;
+        newData[1][data[i].Date] = data[i].Smear;
+        newData[2][data[i].Date] = data[i].Tortuosity;
+      }
+      this.setState({
+        faultData  : newData,
+        faultFields: fields,
+      });
+      // 测试 end
+      console.log('[Error] query history error: ', err);
+      loading.card = false;
+      this.setState({loading});
     });
+  }
+
+  /**
+   * 获取历史故障列表数据
+   */
+  getHistoryErrorDetailsData() {
+    const { apiUrl, pagination, loading } = this.state;
+    loading.table = true;
+    this.setState({loading});
+    fetch(apiUrl.queryHistoryErrorDetails).then(res => res.json()).then(data => {
+      // const pagination = { ...this.state.pagination };
+      pagination.total = parseInt(data.totalnum);
+      this.setState({
+        detailsData: data.totalinfo,
+        pagination
+      });
+      loading.table = false;
+      this.setState({loading});
+    }).catch(err => {
+      // 测试代码数据
+      console.log('测试数据');
+      let data = require('./HistoryErrorDetails.json');
+      pagination.total = parseInt(data.totalnum);
+      this.setState({
+        detailsData: data.totalinfo,
+        pagination
+      });
+      // 测试 end
+      console.log('[Error] query history error details: ', err);
+      loading.table = false;
+      this.setState({loading});
+    })
   }
 
   /**
@@ -108,8 +178,20 @@ class FaultChart extends React.Component {
     return '';
   }
 
+  /**
+   * 分页
+   */
+  handleTableChange = (pagination) => {
+    const pager = { ...this.state.pagination };
+    pager.current = pagination.current;
+    this.setState(
+      { pagination: pager }, 
+      this.getHistoryErrorDetailsData
+    );
+  }
+
   render() {
-    const { rangePickerValue, loading, faultData, faultFields } = this.state;
+    const { rangePickerValue, loading, faultData, faultFields, detailsData, pagination } = this.state;
     const dv = new DataSet.View().source(faultData);
     dv.transform({
       type  : 'fold',
@@ -130,27 +212,71 @@ class FaultChart extends React.Component {
           value={rangePickerValue} 
           onChange={this.handleRangePickerChange} 
           className={styles.picker}
+          showTime={{format:"HH:mm:ss"}}
+          format="YYYY-MM-DD HH:mm:ss"
         />
       </div>
     );
+
+    const columns = [{
+      title: '摄像头ID',
+      dataIndex: 'CameraID',
+    }, {
+      title: '设备故障类型',
+      dataIndex: 'ErrorType',
+    }, {
+      title: '生产线ID',
+      dataIndex: 'ProductionLineID',
+    }, {
+      title: '故障设备型号',
+      dataIndex: 'Model',
+    }, {
+      title: '故障设备序列号',
+      dataIndex: 'SerialNum',
+    }, {
+      title: '工厂地址',
+      dataIndex: 'Location',
+    }, {
+      title: '故障发生时间',
+      dataIndex: 'Date',
+    }, {
+      title: '操作',
+      key: 'action',
+      render: (text, record) => (
+        <span><a href={record.Img} target={'_blank'}>查看故障图片</a></span>
+      ),
+    }]
 
     return (
       <div className={styles.mainBody}>
         <div className={styles.mainCard}>
           <Row gutter={16}>
             <Col span={24}>
-              <Card className={styles.faultCard} loading={loading} bordered={true}
+              <Card className={styles.faultCard} loading={loading.card} bordered={true}
                 title="故障统计"
                 extra={extra}
               >
-                <Chart forceFit={true} height={300} data={data}>
-                  <Tooltip />
-                  <Axis />
-                  <Legend />
-                  <StackBar position="日期*故障数" color="name" />
-                  {/* <Line position="日期*故障数" color="name" /> */}
-                  {/* <Point position="日期*故障数" color="name" size={4} style={{ stroke: '#fff', lineWidth: 1 }} shape="circle"/> */}
-                </Chart>
+                <Row gutter={16}>
+                  <Col span={24}>
+                    <Chart forceFit height={400} data={data}>
+                      <Tooltip />
+                      <Axis />
+                      <Legend />
+                      <StackBar position="日期*故障数" color="name" />
+                    </Chart>
+                  </Col>
+                  <Col span={24}>
+                    <Table
+                      columns={columns}
+                      dataSource={detailsData}
+                      pagination={pagination}
+                      onChange={this.handleTableChange}
+                      rowKey={record => record.uid}
+                      loading={loading.table}
+                    >
+                    </Table>
+                  </Col>
+                </Row>
               </Card>
             </Col>
           </Row>
