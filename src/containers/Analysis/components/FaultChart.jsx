@@ -1,6 +1,8 @@
 // vendor
 import React from 'react';
 import { injectIntl } from 'react-intl';
+// import { connect } from 'react-redux'
+// import { bindActionCreators } from 'redux'
 import { 
   Layout, 
   Card, 
@@ -12,6 +14,7 @@ import {
 } from 'antd';
 import { Chart, Tooltip, Axis, Legend, StackBar } from 'viser-react';
 import { getTimeDistance } from '../../../utils/utils';
+// import { getAnalysis1 } from '../../../actions/apps'
 import locale from 'antd/lib/date-picker/locale/zh_CN';
 
 // css
@@ -46,13 +49,19 @@ class FaultChart extends React.Component {
   }
 
   componentWillMount = () => {
-    console.log(this.props);
+    // this.props.getAnalysis1(1, '2019-01-01', '2019-12-31', 'All')
   }
 
   componentDidMount = () => {
     this.getFaultData();
     this.getHistoryErrorDetailsData();
   }
+  // componentWillReceiveProps = (nextProps) => {
+  //   if (this.props.analysisList1 !== nextProps.analysisList1) {
+  //     this.setState({ analysisList1: nextProps.analysisList1 }, () => {
+  //     })
+  //   }
+  // }
 
   /**
    * 获取根据当前选择的日期获取故障数据
@@ -119,7 +128,8 @@ class FaultChart extends React.Component {
     const { apiUrl, pagination, loading } = this.state;
     loading.table = true;
     this.setState({loading});
-    fetch(apiUrl.queryHistoryErrorDetails).then(res => res.json()).then(data => {
+    let params = '?camId='+1+'&tag='+0;
+    fetch(apiUrl.queryHistoryErrorDetails + params).then(res => res.json()).then(data => {
       // const pagination = { ...this.state.pagination };
       pagination.total = parseInt(data.totalnum);
       this.setState({
@@ -287,3 +297,17 @@ class FaultChart extends React.Component {
 }
 
 export default injectIntl(FaultChart)
+
+// const mapStateToProps = (state) => {
+//   return {
+//     analysisList1: state.analysisList1,
+//   }
+// }
+// const mapDispatchToProps = (dispatch) => {
+//   return {
+//     getAnalysis1: bindActionCreators(getAnalysis1, dispatch),
+//   }
+// }
+
+// export default connect(mapStateToProps, mapDispatchToProps)(injectIntl(FaultChart))
+

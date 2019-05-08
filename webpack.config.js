@@ -1,8 +1,9 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
-const VideoProxyConfig = {
+const ProxyConfig = {
   target: 'http://localhost:5555',
+  changeOrigin: true,
   secure: false,
 }
 
@@ -96,8 +97,11 @@ module.exports = {
     compress: false,
     open: true,
     proxy: {
-      '/start': VideoProxyConfig,
-      '/stream': VideoProxyConfig,
+      '/start': ProxyConfig,
+      '/stream': ProxyConfig,
+      '/HistoryError': ProxyConfig,
+      '/HistoryErrorDetails': ProxyConfig,
+      '/img': ProxyConfig,
     },
   },
 }

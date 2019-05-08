@@ -48,17 +48,17 @@ class VideoBox1 extends React.Component {
                             <ul>
                               <li><label>摄像头ID:</label>{videoInfo.CameraID}</li>
                               <li><label>设备故障类型:</label> {videoInfo.ErrorType}</li>
-                              <li><label>生产线ID: </label>{videoInfo.production_line}</li>
+                              <li><label>生产线ID: </label>{videoInfo.ProductionLineID}</li>
                               <li><label>故障设备型号: </label>{videoInfo.Model}</li>
                               <li><label>故障设备序列号: </label>{videoInfo.SerialNum}</li>
-                              <li><label>工厂地址: </label>{videoInfo.location}</li>
-                              <li><label>故障发生时间: </label>{videoInfo.date}</li>
+                              <li><label>工厂地址: </label>{videoInfo.Location}</li>
+                              <li><label>故障发生时间: </label>{videoInfo.Date}</li>
                             </ul>
                           </Col>
                           <Col span={13}>
                             <Card>
                               <img className={styles.boxImg}
-                                src="https://gw.alipayobjects.com/zos/antfincdn/h%24wFbzuuzz/HBWnDEUXCnGnGrRfrpKa.png"
+                                src={"http://localhost:5555/" + videoImg}
                                 alt="map"
                               />
                               <Meta
