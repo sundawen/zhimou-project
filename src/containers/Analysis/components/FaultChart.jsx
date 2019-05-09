@@ -80,7 +80,7 @@ class FaultChart extends React.Component {
         { name: "拖影" },
         { name: "变形" },
       ];
-      let fields = [];
+      let fields = [''];
       for (let i in data) {
         fields.push(data[i].Date);
         newData[0][data[i].Date] = data[i].BlueScreen;
@@ -91,6 +91,7 @@ class FaultChart extends React.Component {
         faultData  : newData,
         faultFields: fields,
       });
+      this.state.faultFields.push('')
       console.log(this.state.faultData);
       loading.card = false;
       this.setState({loading});
