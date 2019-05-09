@@ -11,6 +11,10 @@ import {
   Col, 
   Table, 
   Form, 
+  Input,
+  Button,
+  Select,
+  Spin
 } from 'antd';
 import { Chart, Tooltip, Axis, Legend, StackBar } from 'viser-react';
 import { getTimeDistance } from '../../../utils/utils';
@@ -24,8 +28,7 @@ const FormItem = Form.Item;
 const Content = Layout;
 const DataSet = require('@antv/data-set');
 const { RangePicker } = DatePicker;
-
-
+const { Option } = Select;
 
 /**
  * 故障数图表
@@ -36,13 +39,21 @@ class FaultChart extends React.Component {
     super(props);
     this.state = {
       rangePickerValue: getTimeDistance('year'), // 默认时间为一年内
-      loading         : { card: false, chart: false, table: false},                   // 加载中
+      loading         : { chart: false, table: false},                   // 加载中
       faultData       : [],                      // 故障数据
       faultFields     : [],                      // 故障横坐标字段 - 日期
       detailsData     : [],
-      pagination: {defaultPageSize: 5},
+      pagination      : { defaultPageSize: 5 },
+      searchs         : {                        // 列表搜索框
+        time     : getTimeDistance('year'),
+        errorType: 'All',
+      },
+      tmpSearchs      : {
+        time     : getTimeDistance('year'),
+        errorType: 'All',
+      },
       apiUrl          : {                        // API URL
-        queryHistoryError: '/HistoryError',
+        queryHistoryError       : '/HistoryError',
         queryHistoryErrorDetails: '/HistoryErrorDetails',
       },
     };
@@ -53,8 +64,14 @@ class FaultChart extends React.Component {
   }
 
   componentDidMount = () => {
+    // 获取故障数据
     this.getFaultData();
-    this.getHistoryErrorDetailsData();
+    // 获取故障列表数据
+    const { searchs } = this.state;
+    this.getHistoryErrorDetailsData({
+      errorType: searchs.errorType,
+      time: searchs.time
+    });
   }
   // componentWillReceiveProps = (nextProps) => {
   //   if (this.props.analysisList1 !== nextProps.analysisList1) {
@@ -68,11 +85,11 @@ class FaultChart extends React.Component {
    */
   getFaultData() {
     const { rangePickerValue, apiUrl, loading } = this.state,
-    start = rangePickerValue[0].format('YYYY-MM-DD'),
-    end   = rangePickerValue[1].format('YYYY-MM-DD'),
+    start = rangePickerValue[0].format('YYYY-MM-DD HH:mm:ss'),
+    end   = rangePickerValue[1].format('YYYY-MM-DD HH:mm:ss'),
     camId = this.props.hasOwnProperty('camId') ? this.props.camId : '';
     let params = '?camId='+camId+'&StartTime='+start+'&EndTime='+end;
-    loading.card = true;
+    loading.chart = true;
     this.setState({loading});
     fetch(apiUrl.queryHistoryError+params, {method: 'get'}).then(res => res.json()).then(data => {
       let newData = [
@@ -93,7 +110,7 @@ class FaultChart extends React.Component {
       });
       this.state.faultFields.push('')
       console.log(this.state.faultData);
-      loading.card = false;
+      loading.chart = false;
       this.setState({loading});
     }).catch(err => {
       // 测试代码数据
@@ -117,7 +134,7 @@ class FaultChart extends React.Component {
       });
       // 测试 end
       console.log('[Error] query history error: ', err);
-      loading.card = false;
+      loading.chart = false;
       this.setState({loading});
     });
   }
@@ -126,13 +143,20 @@ class FaultChart extends React.Component {
    * 获取历史故障列表数据
    */
   getHistoryErrorDetailsData() {
-    const { apiUrl, pagination, loading } = this.state;
+    const { apiUrl, pagination, loading, searchs } = this.state;
+    let tag     = pagination.hasOwnProperty('current') ? (pagination.current-1)*5 : 0,
+      camId     = this.props.hasOwnProperty('camId') ? this.props.camId : '',
+      errorType = searchs.errorType,
+      start     = searchs.time[0].format('YYYY-MM-DD HH:mm:ss'),
+      end       = searchs.time[1].format('YYYY-MM-DD HH:mm:ss');
     loading.table = true;
     this.setState({loading});
-    let params = '?camId='+1+'&tag='+0;
+    let params = '?camId='+camId+'&tag='+tag+'&StartTime='+start+'&EndTime='+end+'&ErrorType='+errorType;
     fetch(apiUrl.queryHistoryErrorDetails + params).then(res => res.json()).then(data => {
-      // const pagination = { ...this.state.pagination };
       pagination.total = parseInt(data.totalnum);
+      data.totalinfo.forEach((item, key) => {
+        item.key = key;
+      });
       this.setState({
         detailsData: data.totalinfo,
         pagination
@@ -144,6 +168,9 @@ class FaultChart extends React.Component {
       console.log('测试数据');
       let data = require('./HistoryErrorDetails.json');
       pagination.total = parseInt(data.totalnum);
+      data.totalinfo.forEach((item, key) => {
+        item.key = key;
+      });
       this.setState({
         detailsData: data.totalinfo,
         pagination
@@ -190,6 +217,41 @@ class FaultChart extends React.Component {
   }
 
   /**
+   * 搜索
+   */
+  search() {
+    const { tmpSearchs, searchs, pagination } = this.state;
+    searchs.errorType = tmpSearchs.errorType;
+    searchs.time = tmpSearchs.time;
+    pagination.current = 1;
+    this.setState({searchs, pagination}, this.getHistoryErrorDetailsData);
+  }
+
+  /**
+   * 设置搜索条件 - 故障类型
+   * @param {string} value 故障类型
+   */
+  changeSearchErrorType(value) {
+    const { tmpSearchs } = this.state;
+    tmpSearchs.errorType = value;
+    this.setState({
+      tmpSearchs
+    });
+  }
+
+  /**
+   * 设置搜索条件 - 时间
+   * @param {string} value 时间
+   */
+  changeSearchTime = (value) => {
+    const { tmpSearchs } = this.state;
+    tmpSearchs.time = value;
+    this.setState({
+      tmpSearchs
+    });
+  }
+
+  /**
    * 分页
    */
   handleTableChange = (pagination) => {
@@ -202,7 +264,7 @@ class FaultChart extends React.Component {
   }
 
   render() {
-    const { rangePickerValue, loading, faultData, faultFields, detailsData, pagination } = this.state;
+    const { rangePickerValue, loading, faultData, faultFields, detailsData, pagination, tmpSearchs } = this.state;
     const dv = new DataSet.View().source(faultData);
     dv.transform({
       type  : 'fold',
@@ -256,33 +318,63 @@ class FaultChart extends React.Component {
       render: (text, record) => (
         <span><a href={record.Img} target={'_blank'}>查看故障图片</a></span>
       ),
-    }]
+    }];
+
+    // 搜索框
+    const searchBar = (
+      <Row className={styles.searchBar}>
+        <Col>
+          <Button type="primary" icon="search" className={styles.searchBtn}
+            onClick={() => this.search()}>搜索</Button>
+          <RangePicker 
+            locale={locale}
+            value={tmpSearchs.time} 
+            onChange={this.changeSearchTime}
+            className={styles.picker}
+            showTime={{format:"HH:mm:ss"}}
+            format="YYYY-MM-DD HH:mm:ss"
+            className={styles.rangePicker}
+          />
+          <Select defaultValue={tmpSearchs.errorType} className={styles.select}
+            onChange={this.changeSearchErrorType.bind(this)}>
+            <Option value="All">全部</Option>
+            <Option value="BlueScreen">蓝屏</Option>
+            <Option value="Smear">拖影</Option>
+            <Option value="Tortuosity">变形</Option>
+          </Select>
+          <span className={styles.label}>故障类型：</span>
+        </Col>
+      </Row>
+    );
 
     return (
       <div className={styles.mainBody}>
         <div className={styles.mainCard}>
           <Row gutter={16}>
             <Col span={24}>
-              <Card className={styles.faultCard} loading={loading.card} bordered={true}
+              <Card className={styles.faultCard} bordered={true}
                 title="故障统计"
                 extra={extra}
               >
                 <Row gutter={16}>
                   <Col span={24}>
-                    <Chart forceFit height={400} data={data}>
-                      <Tooltip />
-                      <Axis />
-                      <Legend />
-                      <StackBar position="日期*故障数" color="name" />
-                    </Chart>
+                    <Spin spinning={loading.chart}>
+                      <Chart forceFit height={400} data={data}>
+                        <Tooltip />
+                        <Axis />
+                        <Legend />
+                        <StackBar position="日期*故障数" color="name" />
+                      </Chart>
+                    </Spin>
                   </Col>
                   <Col span={24}>
+                    {searchBar}
                     <Table
                       columns={columns}
                       dataSource={detailsData}
                       pagination={pagination}
                       onChange={this.handleTableChange}
-                      rowKey={record => record.uid}
+                      rowKey={record => record.key}
                       loading={loading.table}
                     >
                     </Table>
