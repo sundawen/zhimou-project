@@ -19,6 +19,27 @@
           width: 256px;
         }
       }
+      .searchBar {
+        padding-bottom: 20px;
+        .searchBtn {
+          float: right;
+        }
+        .rangePicker {
+          float: right; 
+          margin-right: 24px;
+        }
+        .label {
+          display: block;
+          height: 32px; 
+          line-height: 32px; 
+          float: right;
+        }
+        .select {
+          float:right;
+          margin-right: 24px; 
+          min-width: 100px;
+        }
+      }
     }
   }
 }
