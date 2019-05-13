@@ -19,9 +19,6 @@ const Content = Layout;
 class Analysis extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      camIds: [1, 2], // camId 集合
-    };
   }
 
   componentWillMount = () => {
@@ -31,15 +28,12 @@ class Analysis extends React.Component {
   }
 
   render() {
-    const { camIds } = this.state;
     return (
       <Layout>
         <Layout>
-          <Header/>
+          <Header />
           <Content className={styles.wrapper}>
-            {camIds.map((camId) => {
-              return <FaultChart camId={camId} key={camId} />
-            })}
+            <FaultChart />
           </Content>
           <Foot />
         </Layout>
