@@ -14,7 +14,8 @@ import {
   Input,
   Button,
   Select,
-  Spin
+  Spin,
+  Tabs
 } from 'antd';
 import { Chart, Tooltip, Axis, Legend, Geom} from 'bizcharts';
 import { getTimeDistance } from '../../../utils/utils';
@@ -27,13 +28,13 @@ import styles from './FaultChart.scss';
 
 const FormItem = Form.Item;
 const Content = Layout;
+const TabPane = Tabs.TabPane;
 const DataSet = require('@antv/data-set');
 const { RangePicker } = DatePicker;
 const { Option } = Select;
 
 /**
  * 故障数图表
- * @todo 接口未对接
  */
 class FaultChart extends React.Component {
   constructor(props) {
@@ -58,6 +59,12 @@ class FaultChart extends React.Component {
         queryHistoryError       : '/HistoryError',
         queryHistoryErrorDetails: '/HistoryErrorDetails',
       },
+      camIds          : [{                       // camId 集合
+        camId: 1, title: zh_CN.video1,
+      }, {
+        camId: 2, title: zh_CN.video2,
+      }],                            
+      currentCamId: 1,                           // 当前 tab 选中的 camId
     };
   }
 
@@ -66,14 +73,7 @@ class FaultChart extends React.Component {
   }
 
   componentDidMount = () => {
-    // 获取故障数据
-    this.getFaultData();
-    // 获取故障列表数据
-    const { searchs } = this.state;
-    this.getHistoryErrorDetailsData({
-      errorType: searchs.errorType,
-      time: searchs.time
-    });
+    this.getTabData();
   }
   // componentWillReceiveProps = (nextProps) => {
   //   if (this.props.analysisList1 !== nextProps.analysisList1) {
@@ -86,18 +86,17 @@ class FaultChart extends React.Component {
    * 获取根据当前选择的日期获取故障数据
    */
   getFaultData() {
-    const { rangePickerValue, apiUrl, loading } = this.state,
+    const { rangePickerValue, apiUrl, loading, currentCamId } = this.state,
     start = rangePickerValue[0].format('YYYY-MM-DD HH:mm:ss'),
-    end   = rangePickerValue[1].format('YYYY-MM-DD HH:mm:ss'),
-    camId = this.props.hasOwnProperty('camId') ? this.props.camId : '';
-    let params = '?camId='+camId+'&StartTime='+start+'&EndTime='+end;
+    end   = rangePickerValue[1].format('YYYY-MM-DD HH:mm:ss');
+    let params = '?camId='+currentCamId+'&StartTime='+start+'&EndTime='+end;
     loading.chart = true;
     this.setState({loading});
     fetch(apiUrl.queryHistoryError+params, {method: 'get'}).then(res => res.json()).then(data => {
       let newData = [
-        { name: "蓝屏" },
-        { name: "拖影" },
-        { name: "变形" },
+        { name: zh_CN.blueScreen },
+        { name: zh_CN.smear },
+        { name: zh_CN.tortuosity },
       ];
       let fields = [];
       for (let i in data) {
@@ -118,9 +117,9 @@ class FaultChart extends React.Component {
       console.log('测试数据');
       let data = require('./FaultChartData.json');
       let newData = [
-        { name: "蓝屏" },
-        { name: "拖影" },
-        { name: "变形" },
+        { name: zh_CN.blueScreen },
+        { name: zh_CN.smear },
+        { name: zh_CN.tortuosity },
       ];
       let fields = [];
       for (let i in data) {
@@ -144,9 +143,8 @@ class FaultChart extends React.Component {
    * 获取历史故障列表数据
    */
   getHistoryErrorDetailsData() {
-    const { apiUrl, pagination, loading, searchs, sortedInfo } = this.state;
+    const { apiUrl, pagination, loading, searchs, sortedInfo, currentCamId } = this.state;
     let tag     = pagination.hasOwnProperty('current') ? (pagination.current-1)*5 : 0,
-      camId     = this.props.hasOwnProperty('camId') ? this.props.camId : '',
       errorType = searchs.errorType,
       start     = searchs.time[0].format('YYYY-MM-DD HH:mm:ss'),
       end       = searchs.time[1].format('YYYY-MM-DD HH:mm:ss'),
@@ -156,7 +154,7 @@ class FaultChart extends React.Component {
       sortType  = (sortKey != '' && order != '') ? '&SortType='+sortKey+'-'+order : '';
     loading.table = true;
     this.setState({loading});
-    let params = '?camId='+camId+'&tag='+tag+'&StartTime='+start
+    let params = '?camId='+currentCamId+'&tag='+tag+'&StartTime='+start
                 +'&EndTime='+end+'&ErrorType='+errorType+sortType;
     fetch(apiUrl.queryHistoryErrorDetails + params).then(res => res.json()).then(data => {
       pagination.total = parseInt(data.totalnum);
@@ -261,6 +259,37 @@ class FaultChart extends React.Component {
   }
 
   /**
+   * 切换 tab，重置搜索条件
+   */
+  changeTab = (activeKey) => {
+    const { searchs, pagination, tmpSearchs } = this.state;
+    tmpSearchs.errorType = searchs.errorType = 'All';
+    tmpSearchs.time = searchs.time = getTimeDistance('year');
+    pagination.current = 1;
+    // sortedInfo = {};
+    this.setState(
+      {
+        currentCamId: activeKey,
+        searchs,
+        pagination,
+        sortedInfo: {},
+        tmpSearchs
+      }, 
+      this.getTabData
+    );
+  }
+
+  /**
+   * 获取 tab 数据，包括 chart & table
+   */
+  getTabData() {
+    // 获取故障数据
+    this.getFaultData();
+    // 获取故障列表数据
+    this.getHistoryErrorDetailsData();
+  }
+
+  /**
    * 分页
    */
   handleTableChange = (pagination, filters, sorter) => {
@@ -274,13 +303,13 @@ class FaultChart extends React.Component {
 
   render() {
     const { rangePickerValue, loading, faultData, faultFields, 
-      detailsData, pagination, tmpSearchs, sortedInfo } = this.state;
+      detailsData, pagination, tmpSearchs, sortedInfo, camIds } = this.state;
     const dv = new DataSet.View().source(faultData);
     dv.transform({
       type  : 'fold',
       fields: faultFields,
-      key   : '日期',
-      value : '故障数'
+      key   : 'date',
+      value : 'num'
     });
     const data = dv.rows;
     const extra = (
@@ -302,36 +331,36 @@ class FaultChart extends React.Component {
     );
 
     const columns = [{
-      title: '摄像头ID',
+      title: zh_CN.cameraID,
       dataIndex: 'CameraID',
       sorter: (a, b) => a.CameraID.length - b.CameraID.length,
       sortOrder: sortedInfo.columnKey === 'CameraID' && sortedInfo.order,
     }, {
-      title: '设备故障类型',
+      title: zh_CN.typOfFaultScreen,
       dataIndex: 'ErrorType',
       sorter: (a, b) => a.ErrorType.length - b.ErrorType.length,
       sortOrder: sortedInfo.columnKey === 'ErrorType' && sortedInfo.order,
     }, {
-      title: '生产线ID',
+      title: zh_CN.productionLineID,
       dataIndex: 'ProductionLineID',
       sorter: (a, b) => a.ProductionLineID.length - b.ProductionLineID.length,
       sortOrder: sortedInfo.columnKey === 'ProductionLineID' && sortedInfo.order,
     }, {
-      title: '故障设备型号',
+      title: zh_CN.model,
       dataIndex: 'Model',
       sorter: (a, b) => a.Model.length - b.Model.length,
       sortOrder: sortedInfo.columnKey === 'Model' && sortedInfo.order,
     }, {
-      title: '故障设备序列号',
+      title: zh_CN.serialNum,
       dataIndex: 'SerialNum',
     }, {
-      title: '工厂地址',
+      title: zh_CN.location,
       dataIndex: 'Location',
     }, {
-      title: '故障发生时间',
+      title: zh_CN.date,
       dataIndex: 'Date',
     }, {
-      title: '操作',
+      title: zh_CN.operation,
       key: 'action',
       render: (text, record) => (
         <span><a href={record.Img} target={'_blank'}>{zh_CN.viewAbnormalPicture}</a></span>
@@ -366,7 +395,7 @@ class FaultChart extends React.Component {
     );
 
     const scale = {
-      日期: {
+      'date': {
         range: [1/(faultFields.length-1), 1-1/(faultFields.length-1)],
       }
     }
@@ -377,39 +406,46 @@ class FaultChart extends React.Component {
           <Row gutter={16}>
             <Col span={24}>
               <Card className={styles.faultCard} bordered={true}
-                title={zh_CN.faultStatistics}
-                extra={extra}
+                bodyStyle={{ padding: '0 16px'}}
               >
-                <Row gutter={16}>
-                  <Col span={24}>
-                    <Spin spinning={loading.chart}>
-                      <Chart height={360} data={dv} forceFit scale={scale}>
-                        <Legend />
-                        <Axis name={zh_CN.dates} />
-                        <Axis name={zh_CN.faultNumber} />
-                        <Tooltip />
-                        <Geom
-                          type="intervalStack"
-                          position={zh_CN.dateRideFaultNumber}
-                          color="name"
-                        />
-                      </Chart>
-                    </Spin>
-                  </Col>
-                  <Col span={24}>
-                    {searchBar}
-                    <Table
-                      columns={columns}
-                      dataSource={detailsData}
-                      pagination={pagination}
-                      onChange={this.handleTableChange}
-                      rowKey={record => record.key}
-                      loading={loading.table}
-                      size="middle"
-                    >
-                    </Table>
-                  </Col>
-                </Row>
+                <Tabs tabBarExtraContent={extra} size="large" onChange={this.changeTab}>
+                {camIds.map((cam) => {
+                  return (
+                    <TabPane tab={cam.title} key={cam.camId}>
+                      <Row gutter={16}>
+                        <Col span={24}>
+                          <Spin spinning={loading.chart}>
+                            <Chart height={360} data={dv} forceFit scale={scale}>
+                              <Legend />
+                              <Axis name="date" />
+                              <Axis name="num" />
+                              <Tooltip />
+                              <Geom
+                                type="intervalStack"
+                                position="date*num"
+                                color="name"
+                              />
+                            </Chart>
+                          </Spin>
+                        </Col>
+                        <Col span={24}>
+                          {searchBar}
+                          <Table
+                            columns={columns}
+                            dataSource={detailsData}
+                            pagination={pagination}
+                            onChange={this.handleTableChange}
+                            rowKey={record => record.key}
+                            loading={loading.table}
+                            size="middle"
+                          >
+                          </Table>
+                        </Col>
+                      </Row>
+                    </TabPane>
+                  );
+                })}
+                </Tabs>
               </Card>
             </Col>
           </Row>

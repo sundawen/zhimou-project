@@ -25,6 +25,9 @@ const zh_CN = {
     'dates':'日期',
     'faultNumber':'故障数',
     'dateRideFaultNumber':'日期*故障数',
+    'video1': '视频一',
+    'video2': '视频二',
+    'operation': '操作',
 }
 
 export default zh_CN;
