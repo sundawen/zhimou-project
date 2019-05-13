@@ -10,7 +10,6 @@ import {
 
 export const getChannelList = () => {
   const source = new EventSource(API_STREAM_CHANNELONE);
-  console.log(source);
   source.addEventListener('open', () => {
     console.log('Connected');
   }, false);
@@ -23,23 +22,25 @@ export const getChannelList = () => {
     }
   }, false);
 
-    return async (dispatch) => {
-      try {
-        source.addEventListener('greeting', e => {
-          let data = JSON.parse(e.data);
-          console.log(`data: ${data.message}`);
-          dispatch({ type: types.CHANNEL, payload: data.message })
-        }, false);
-        await RestUtil.get(API_CHANNELSECOND)
-      } catch (e) {
-        console.error(e)
-      }
+  return async (dispatch) => {
+    try {
+      source.addEventListener('greeting', e => {
+        let data = JSON.parse(e.data);
+        console.log(`data: ${data.message}`);
+        dispatch({
+          type: types.CHANNEL,
+          payload: data.message
+        })
+      }, false);
+      await RestUtil.get(API_CHANNELSECOND)
+    } catch (e) {
+      console.error(e)
     }
   }
+}
 
 export const getVideo2Data = () => {
   const source = new EventSource(API_STREAM_CHANNELTWO);
-  console.log(source);
   source.addEventListener('open', () => {
     console.log('Connected');
   }, false);
@@ -52,19 +53,22 @@ export const getVideo2Data = () => {
     }
   }, false);
 
-    return async (dispatch) => {
-      try {
-        source.addEventListener('greeting', e => {
-          let data = JSON.parse(e.data);
-          console.log(`data: ${data.message}`);
-          dispatch({ type: types.CHANNELSECOND, payload: data.message })
-        }, false);
-        await RestUtil.get(API_CHANNEL)
-      } catch (e) {
-        console.error(e)
-      }
+  return async (dispatch) => {
+    try {
+      source.addEventListener('greeting', e => {
+        let data = JSON.parse(e.data);
+        console.log(`data: ${data.message}`);
+        dispatch({
+          type: types.CHANNELSECOND,
+          payload: data.message
+        })
+      }, false);
+      await RestUtil.get(API_CHANNEL)
+    } catch (e) {
+      console.error(e)
     }
   }
+}
 
 // export const getAnalysis1 = (camId, StartTime, EndTime, ErrorType) => {
 //   return async (dispatch) => {

@@ -4,6 +4,7 @@ import {Col, Layout, Row, Card} from 'antd';
 import styles from './VideoBox2.scss'
 import zh_CN from '../../../i18n/zh_CN'
 import { API_DEFAULTBACK } from '../../../constants/API'
+import bg from '../bg.png'
 
 const {Content} = Layout;
 
@@ -58,7 +59,7 @@ class VideoBox2 extends React.Component {
                           <Col span={10}>
                             <img className={styles.boxImg}
                               src={API_DEFAULTBACK + videoImg}
-                              alt="map"
+                              onError={(e) => {e.target.onerror = null;e.target.src=bg}}
                             />
                           </Col>
                         </Row>
