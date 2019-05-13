@@ -3,11 +3,13 @@ import RestUtil from '../utils/RestUtil'
 import {
   API_CHANNEL,
   API_CHANNELSECOND,
+  API_STREAM_CHANNELONE,
+  API_STREAM_CHANNELTWO,
   // API_HISTORY_ERROR_FIRST,
 } from '../constants/API'
 
 export const getChannelList = () => {
-  const source = new EventSource('/stream?channel=1');
+  const source = new EventSource(API_STREAM_CHANNELONE);
   console.log(source);
   source.addEventListener('open', () => {
     console.log('Connected');
@@ -36,7 +38,7 @@ export const getChannelList = () => {
   }
 
 export const getVideo2Data = () => {
-  const source = new EventSource('/stream?channel=2');
+  const source = new EventSource(API_STREAM_CHANNELTWO);
   console.log(source);
   source.addEventListener('open', () => {
     console.log('Connected');

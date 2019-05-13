@@ -20,6 +20,7 @@ import { Chart, Tooltip, Axis, Legend, Geom} from 'bizcharts';
 import { getTimeDistance } from '../../../utils/utils';
 // import { getAnalysis1 } from '../../../actions/apps'
 import locale from 'antd/lib/date-picker/locale/zh_CN';
+import zh_CN from '../../../i18n/zh_CN'
 
 // css
 import styles from './FaultChart.scss';
@@ -285,9 +286,9 @@ class FaultChart extends React.Component {
     const extra = (
       <div className={styles.extraWrap}>
         <div className={styles.opt}>
-          <a className={this.isActive('week')} onClick={() => this.selectDate('week')}>本周</a>
-          <a className={this.isActive('month')} onClick={() => this.selectDate('month')}>本月</a>
-          <a className={this.isActive('year')} onClick={() => this.selectDate('year')}>本年</a>
+          <a className={this.isActive('week')} onClick={() => this.selectDate('week')}>{zh_CN.theWeek}</a>
+          <a className={this.isActive('month')} onClick={() => this.selectDate('month')}>{zh_CN.theMonth}</a>
+          <a className={this.isActive('year')} onClick={() => this.selectDate('year')}>{zh_CN.theYear}</a>
         </div>
         <RangePicker 
           locale={locale}
@@ -333,7 +334,7 @@ class FaultChart extends React.Component {
       title: '操作',
       key: 'action',
       render: (text, record) => (
-        <span><a href={record.Img} target={'_blank'}>查看故障图片</a></span>
+        <span><a href={record.Img} target={'_blank'}>{zh_CN.viewAbnormalPicture}</a></span>
       ),
     }];
 
@@ -342,7 +343,7 @@ class FaultChart extends React.Component {
       <Row className={styles.searchBar}>
         <Col>
           <Button type="primary" icon="search" className={styles.searchBtn}
-            onClick={() => this.search()}>搜索</Button>
+            onClick={() => this.search()}>{zh_CN.search}</Button>
           <RangePicker 
             locale={locale}
             value={tmpSearchs.time} 
@@ -354,12 +355,12 @@ class FaultChart extends React.Component {
           />
           <Select defaultValue={tmpSearchs.errorType} className={styles.select}
             onChange={this.changeSearchErrorType.bind(this)}>
-            <Option value="All">全部</Option>
-            <Option value="BlueScreen">蓝屏</Option>
-            <Option value="Smear">拖影</Option>
-            <Option value="Tortuosity">变形</Option>
+            <Option value="All">{zh_CN.all}</Option>
+            <Option value="BlueScreen">{zh_CN.blueScreen}</Option>
+            <Option value="Smear">{zh_CN.smear}</Option>
+            <Option value="Tortuosity">{zh_CN.tortuosity}</Option>
           </Select>
-          <span className={styles.label}>故障类型：</span>
+          <span className={styles.label}>{zh_CN.typOfFaultScreen}：</span>
         </Col>
       </Row>
     );
@@ -376,7 +377,7 @@ class FaultChart extends React.Component {
           <Row gutter={16}>
             <Col span={24}>
               <Card className={styles.faultCard} bordered={true}
-                title="故障统计"
+                title={zh_CN.faultStatistics}
                 extra={extra}
               >
                 <Row gutter={16}>
@@ -384,12 +385,12 @@ class FaultChart extends React.Component {
                     <Spin spinning={loading.chart}>
                       <Chart height={400} data={dv} forceFit scale={scale}>
                         <Legend />
-                        <Axis name="日期" />
-                        <Axis name="故障数" />
+                        <Axis name={zh_CN.dates} />
+                        <Axis name={zh_CN.faultNumber} />
                         <Tooltip />
                         <Geom
                           type="intervalStack"
-                          position="日期*故障数"
+                          position={zh_CN.dateRideFaultNumber}
                           color="name"
                         />
                       </Chart>
