@@ -152,7 +152,7 @@ class FaultChart extends React.Component {
       sortKey   = sortedInfo.hasOwnProperty('columnKey') ? sortedInfo.columnKey : '',
       order     = sortedInfo.hasOwnProperty('order') 
                   ? (sortedInfo.order == 'descend' ? 'desc' : 'asc') : '',
-      sortType  = (sortKey != '' && order != '') ? 'SortType='+sortKey+'-'+order : '';
+      sortType  = (sortKey != '' && order != '') ? '&SortType='+sortKey+'-'+order : '';
     loading.table = true;
     this.setState({loading});
     let params = '?camId='+camId+'&tag='+tag+'&StartTime='+start
@@ -382,7 +382,7 @@ class FaultChart extends React.Component {
                 <Row gutter={16}>
                   <Col span={24}>
                     <Spin spinning={loading.chart}>
-                      <Chart height={400} data={dv} forceFit scale={scale}>
+                      <Chart height={360} data={dv} forceFit scale={scale}>
                         <Legend />
                         <Axis name="日期" />
                         <Axis name="故障数" />
@@ -404,6 +404,7 @@ class FaultChart extends React.Component {
                       onChange={this.handleTableChange}
                       rowKey={record => record.key}
                       loading={loading.table}
+                      size="middle"
                     >
                     </Table>
                   </Col>
