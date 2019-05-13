@@ -3,6 +3,7 @@ import { injectIntl } from 'react-intl'
 import { NavLink } from 'react-router-dom'
 import styles from './Head.scss'
 import ImgVMiddle from '../../components/ImgVMiddle/ImgVMiddle'
+import zh_CN from '../../i18n/zh_CN'
 
 // images
 import LENOVOLOGO from './lenovo.png'
@@ -19,8 +20,8 @@ class Head extends React.Component {
             </div>
             <div className={styles.middle}>
               <ul>
-                <li><NavLink to="/video" activeClassName={styles.selected}>实时视频</NavLink></li>
-                <li><NavLink to="/analysis" activeClassName={styles.selected}>历史记录</NavLink></li>
+                <li><NavLink to="/video" activeClassName={styles.selected}>{zh_CN.realTimeVideo}</NavLink></li>
+                <li><NavLink to="/analysis" activeClassName={styles.selected}>{zh_CN.historicalRecord}</NavLink></li>
               </ul>
             </div>
           </nav>

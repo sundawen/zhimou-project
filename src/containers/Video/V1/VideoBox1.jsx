@@ -2,9 +2,10 @@ import React from 'react'
 import { injectIntl } from 'react-intl'
 import {Col, Layout, Row, Card} from 'antd';
 import styles from './VideoBox1.scss'
+import zh_CN from '../../../i18n/zh_CN'
+import { API_DEFAULTBACK } from '../../../constants/API'
 
 const {Content} = Layout;
-const { Meta } = Card;
 
 class VideoBox1 extends React.Component {
 
@@ -25,7 +26,7 @@ class VideoBox1 extends React.Component {
               <div className={styles.mainCard}>
                 <Row gutter={16}>
                   <Col span={7}>
-                    <Card title="频道一" bordered={false}>
+                    <Card title={zh_CN.ChannelOne} bordered={false}>
                       <div className={styles.cardHeight}>
                         <video
                           className={styles.video}
@@ -40,32 +41,25 @@ class VideoBox1 extends React.Component {
                     </Card>
                   </Col>
                   <Col span={17}>
-                    <Card hoverable title="实时数据" bordered={false}>
-
+                    <Card hoverable title={zh_CN.RealTimeFaultData} bordered={false} className={styles.noCursor}>
                       <div className={styles.cardHeight}>
-                        <Row gutter={16} className={styles.noCursor}>
-                          <Col span={11}>
+                        <Row gutter={16}>
+                          <Col span={14}>
                             <ul>
-                              <li><label>摄像头ID:</label>{videoInfo.CameraID}</li>
-                              <li><label>设备故障类型:</label> {videoInfo.ErrorType}</li>
-                              <li><label>生产线ID: </label>{videoInfo.ProductionLineID}</li>
-                              <li><label>故障设备型号: </label>{videoInfo.Model}</li>
-                              <li><label>故障设备序列号: </label>{videoInfo.SerialNum}</li>
-                              <li><label>工厂地址: </label>{videoInfo.Location}</li>
-                              <li><label>故障发生时间: </label>{videoInfo.Date}</li>
+                              <li><label>{zh_CN.cameraID}:</label>{videoInfo.CameraID}</li>
+                              <li><label>{zh_CN.errorType}:</label> {videoInfo.ErrorType}</li>
+                              <li><label>{zh_CN.productionLineID}: </label>{videoInfo.ProductionLineID}</li>
+                              <li><label>{zh_CN.model}: </label>{videoInfo.Model}</li>
+                              <li><label>{zh_CN.serialNum}: </label>{videoInfo.SerialNum}</li>
+                              <li><label>{zh_CN.location}: </label>{videoInfo.Location}</li>
+                              <li><label>{zh_CN.date}: </label>{videoInfo.Date}</li>
                             </ul>
                           </Col>
-                          <Col span={13}>
-                            <Card>
-                              <img className={styles.boxImg}
-                                src={"http://localhost:5555/" + videoImg}
-                                alt="map"
-                              />
-                              <Meta
-                                title="异常画面信息"
-                                description={videoImg}
-                              />
-                            </Card>
+                          <Col span={10}>
+                            <img className={styles.boxImg}
+                              src={API_DEFAULTBACK + videoImg}
+                              alt="map"
+                            />
                           </Col>
                         </Row>
                       </div>
