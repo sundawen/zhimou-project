@@ -93,22 +93,24 @@ class FaultChart extends React.Component {
     loading.chart = true;
     this.setState({loading});
     fetch(apiUrl.queryHistoryError+params, {method: 'get'}).then(res => res.json()).then(data => {
-      let newData = [
-        { name: zh_CN.blueScreen },
-        { name: zh_CN.smear },
-        { name: zh_CN.tortuosity },
-      ];
-      let fields = [];
-      for (let i in data) {
-        fields.push(data[i].Date);
-        newData[0][data[i].Date] = data[i].BlueScreen;
-        newData[1][data[i].Date] = data[i].Smear;
-        newData[2][data[i].Date] = data[i].Tortuosity;
+      if (data.hasOwnProperty('length') && data.length > 0) {
+        let newData = [
+          { name: zh_CN.blueScreen },
+          { name: zh_CN.smear },
+          { name: zh_CN.tortuosity },
+        ];
+        let fields = [];
+        for (let i in data) {
+          fields.push(data[i].Date);
+          newData[0][data[i].Date] = data[i].BlueScreen;
+          newData[1][data[i].Date] = data[i].Smear;
+          newData[2][data[i].Date] = data[i].Tortuosity;
+        }
+        this.setState({
+          faultData  : newData,
+          faultFields: fields,
+        });
       }
-      this.setState({
-        faultData  : newData,
-        faultFields: fields,
-      });
       loading.chart = false;
       this.setState({loading});
     }).catch(err => {
@@ -393,11 +395,17 @@ class FaultChart extends React.Component {
       </Row>
     );
 
-    const scale = {
+    // 防止横坐标柱状溢出和日期显示问题
+    const len = faultFields.length;
+    const scale = len > 7 ? {
       'date': {
-        range: [1/(faultFields.length-1), 1-1/(faultFields.length-1)],
+        range: [1/(len-1), 1-1/(len-1)],
       }
-    }
+    } : {
+      'date': {
+        type: 'cat'
+      }
+    };
 
     return (
       <div className={styles.mainBody}>
