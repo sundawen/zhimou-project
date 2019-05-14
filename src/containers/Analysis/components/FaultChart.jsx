@@ -40,18 +40,18 @@ class FaultChart extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      rangePickerValue: getTimeDistance('year'), // 默认时间为一年内
+      rangePickerValue: getTimeDistance('week'), // 默认时间为一年内
       loading         : { chart: false, table: false},                   // 加载中
       faultData       : [],                      // 故障数据
       faultFields     : [],                      // 故障横坐标字段 - 日期
       detailsData     : [],
       pagination      : { defaultPageSize: 5 },
       searchs         : {                        // 列表搜索框
-        time     : getTimeDistance('year'),
+        time     : getTimeDistance('week'),
         errorType: 'All',
       },
       tmpSearchs      : {
-        time     : getTimeDistance('year'),
+        time     : getTimeDistance('week'),
         errorType: 'All',
       },
       sortedInfo      : {},                    // 排序
@@ -109,7 +109,6 @@ class FaultChart extends React.Component {
         faultData  : newData,
         faultFields: fields,
       });
-      console.log(this.state.faultData);
       loading.chart = false;
       this.setState({loading});
     }).catch(err => {
@@ -264,7 +263,7 @@ class FaultChart extends React.Component {
   changeTab = (activeKey) => {
     const { searchs, pagination, tmpSearchs } = this.state;
     tmpSearchs.errorType = searchs.errorType = 'All';
-    tmpSearchs.time = searchs.time = getTimeDistance('year');
+    tmpSearchs.time = searchs.time = getTimeDistance('week');
     pagination.current = 1;
     // sortedInfo = {};
     this.setState(
@@ -406,16 +405,16 @@ class FaultChart extends React.Component {
           <Row gutter={16}>
             <Col span={24}>
               <Card className={styles.faultCard} bordered={true}
-                bodyStyle={{ padding: '0 16px'}}
+                bodyStyle={{ padding: 0}}
               >
                 <Tabs tabBarExtraContent={extra} size="large" onChange={this.changeTab}>
                 {camIds.map((cam) => {
                   return (
                     <TabPane tab={cam.title} key={cam.camId}>
                       <Row gutter={16}>
-                        <Col span={24}>
+                        <Col span={24} style={{padding: '0 32px'}}>
                           <Spin spinning={loading.chart}>
-                            <Chart height={360} data={dv} forceFit scale={scale}>
+                            <Chart height={360} data={data} forceFit scale={scale}>
                               <Legend />
                               <Axis name="date" />
                               <Axis name="num" />
@@ -428,7 +427,7 @@ class FaultChart extends React.Component {
                             </Chart>
                           </Spin>
                         </Col>
-                        <Col span={24}>
+                        <Col span={24} style={{padding: '0 32px'}}>
                           {searchBar}
                           <Table
                             columns={columns}
