@@ -4,7 +4,8 @@
     padding: 15px;
     .faultCard {
       .extraWrap {
-        line-height: 55px;
+        line-height: 60px;
+        padding-right: 24px;
         .opt {
           display: inline-block;
           margin-right: 24px;
@@ -43,4 +44,11 @@
       }
     }
   }
+}
+// 修改本组件使用的 antd 组件
+.mainBody :global(.ant-tabs .ant-tabs-large-bar .ant-tabs-tab) {
+  padding: 18px;
+}
+.mainBody :global(.ant-tabs-bar) {
+  padding-left: 16px;
 }
