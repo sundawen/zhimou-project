@@ -33,6 +33,17 @@ const DataSet = require('@antv/data-set');
 const { RangePicker } = DatePicker;
 const { Option } = Select;
 
+// 画面故障类型集合
+const errorTypes = [{
+  key: 'All', text: zh_CN.all,
+}, {
+  key: 'BlueScreen', text: zh_CN.blueScreen,
+}, {
+  key: 'Smear', text: zh_CN.smear,
+}, {
+  key: 'Tortuosity', text: zh_CN.tortuosity,
+}]
+
 /**
  * 故障数图表
  */
@@ -302,6 +313,21 @@ class FaultChart extends React.Component {
     );
   }
 
+  /**
+   * 获取 errorType 对应的提示
+   */
+  getErrorTypeText(key) {
+    console.log(key);
+    let text = '';
+    for (let i = 0; i < errorTypes.length; i++) {
+      if (errorTypes[i].key == key) {
+        text = errorTypes[i].text;
+        break;
+      }
+    }
+    return text;
+  }
+
   render() {
     const { rangePickerValue, loading, faultData, faultFields, 
       detailsData, pagination, tmpSearchs, sortedInfo, camIds } = this.state;
@@ -334,18 +360,15 @@ class FaultChart extends React.Component {
     const columns = [{
       title: zh_CN.cameraID,
       dataIndex: 'CameraID',
-      sorter: (a, b) => a.CameraID.length - b.CameraID.length,
-      sortOrder: sortedInfo.columnKey === 'CameraID' && sortedInfo.order,
     }, {
       title: zh_CN.typOfFaultScreen,
       dataIndex: 'ErrorType',
       sorter: (a, b) => a.ErrorType.length - b.ErrorType.length,
       sortOrder: sortedInfo.columnKey === 'ErrorType' && sortedInfo.order,
+      render: ErrorType => this.getErrorTypeText(ErrorType),
     }, {
       title: zh_CN.productionLineID,
       dataIndex: 'ProductionLineID',
-      sorter: (a, b) => a.ProductionLineID.length - b.ProductionLineID.length,
-      sortOrder: sortedInfo.columnKey === 'ProductionLineID' && sortedInfo.order,
     }, {
       title: zh_CN.model,
       dataIndex: 'Model',
@@ -360,6 +383,8 @@ class FaultChart extends React.Component {
     }, {
       title: zh_CN.date,
       dataIndex: 'Date',
+      sorter: (a, b) => a.Date.length - b.Date.length,
+      sortOrder: sortedInfo.columnKey === 'Date' && sortedInfo.order,
     }, {
       title: zh_CN.operation,
       key: 'action',
@@ -385,10 +410,9 @@ class FaultChart extends React.Component {
           />
           <Select defaultValue={tmpSearchs.errorType} className={styles.select}
             onChange={this.changeSearchErrorType.bind(this)}>
-            <Option value="All">{zh_CN.all}</Option>
-            <Option value="BlueScreen">{zh_CN.blueScreen}</Option>
-            <Option value="Smear">{zh_CN.smear}</Option>
-            <Option value="Tortuosity">{zh_CN.tortuosity}</Option>
+            {errorTypes.map((item) => {
+              return <Option value={item.key}>{item.text}</Option>
+            })}
           </Select>
           <span className={styles.label}>{zh_CN.typOfFaultScreen}：</span>
         </Col>
