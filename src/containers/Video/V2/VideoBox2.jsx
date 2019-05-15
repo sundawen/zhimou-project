@@ -43,7 +43,7 @@ class VideoBox2 extends React.Component {
             <div className={styles.mainBody}>
               <div className={styles.mainCard}>
                 <Row gutter={16}>
-                  <Col span={7}>
+                  <Col span={11}>
                     <Card title={zh_CN.ChannelTwo} bordered={false}>
                     <div className={styles.cardHeight}>
                         <video
@@ -60,7 +60,7 @@ class VideoBox2 extends React.Component {
                       </div>
                     </Card>
                   </Col>
-                  <Col span={17}>
+                  <Col span={13}>
                     <Card hoverable title={zh_CN.RealTimeFaultData} bordered={false} className={styles.noCursor}>
                       <div className={styles.cardHeight}>
                         <Row gutter={16}>

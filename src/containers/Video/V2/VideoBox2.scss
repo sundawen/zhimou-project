@@ -10,7 +10,9 @@
                 cursor: default;
             }
             .cardHeight {
-                height: 285px;
+                height: 300px;
+                min-height: 300px;
+                min-width: 533px;
                 flex: 2;
                 min-height: 100%;
                 .boxImg {
@@ -18,11 +20,11 @@
                     width: 100%;
                     height: 270px;
                 }
-                .video{
-                    width:100%;
-                    min-height: 100%;
-                    object-fit: fill;
-                }
+                // .video{
+                //     width:100%;
+                //     min-height: 100%;
+                //     object-fit: fill;
+                // }
                 ul {
                     margin-top: 14px;
                     font-feature-settings: "tnum";

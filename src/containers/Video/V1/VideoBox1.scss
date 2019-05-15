@@ -12,7 +12,9 @@
                 cursor: default;
             }
             .cardHeight {
-                height: 285px;
+                height: 300px;
+                min-height: 300px;
+                min-width: 533px;
                 flex: 2;
                 min-height: 100%;
                 .boxImg {
