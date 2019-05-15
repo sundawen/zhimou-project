@@ -317,7 +317,6 @@ class FaultChart extends React.Component {
    * 获取 errorType 对应的提示
    */
   getErrorTypeText(key) {
-    console.log(key);
     let text = '';
     for (let i = 0; i < errorTypes.length; i++) {
       if (errorTypes[i].key == key) {

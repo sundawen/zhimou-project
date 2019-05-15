@@ -10,7 +10,7 @@ const ProxyConfig = {
 module.exports = {
   entry: {
     vendor: ['babel-polyfill',
-      path.resolve(__dirname, './src/fonts/iconfont/iconfont.js'),
+      // path.resolve(__dirname, './src/fonts/iconfont/iconfont.js'),
     ],
     bundle: [path.resolve(__dirname, './src/main.jsx')],
   },
