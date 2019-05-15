@@ -5,6 +5,8 @@ import styles from './VideoBox2.scss'
 import zh_CN from '../../../i18n/zh_CN'
 import { API_DEFAULTBACK } from '../../../constants/API'
 import bg from '../bg.png'
+import videojs from 'video.js';
+import 'video.js/dist/video-js.min.css';
 
 const {Content} = Layout;
 
@@ -14,6 +16,21 @@ class VideoBox2 extends React.Component {
     super(props)
     
     this.state = {
+      width:'100%',
+      minHeight: '100%',
+      height: '100%'
+    }
+  }
+
+  componentDidMount() {
+    this.player = videojs('video2', {}, function onPlayerReady() {
+      this.play();
+    })
+  }
+
+  componentWillUnmount() {
+    if (this.player) {
+      this.player.dispose()
     }
   }
 
@@ -28,15 +45,17 @@ class VideoBox2 extends React.Component {
                 <Row gutter={16}>
                   <Col span={7}>
                     <Card title={zh_CN.ChannelTwo} bordered={false}>
-                      <div className={styles.cardHeight}>
+                    <div className={styles.cardHeight}>
                         <video
-                          className={styles.video}
-                          src="https://codata.lenovo.com/static/app.mp4"
-                          muted controls
-                          preload="none"
-                          title="title"
+                          style={ { minHeight: this.state.minHeight, height:this.state.height, width:this.state.width } }
+                          className="video-js" 
+                          id="video2"
+                          muted
+                          controls 
                           autoPlay="autoPlay"
-                          >
+                          loop="loop"
+                          preload="none">
+                          <source src="rtmp://58.200.131.2:1935/livetv/hunantv" type="rtmp/flv" />
                         </video>
                       </div>
                     </Card>

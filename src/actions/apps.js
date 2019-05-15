@@ -1,5 +1,5 @@
 import * as types from '../constants/ActionTypes'
-import RestUtil from '../utils/RestUtil'
+// import RestUtil from '../utils/RestUtil'
 import {
   API_CHANNEL,
   API_CHANNELSECOND,
@@ -32,7 +32,7 @@ export const getChannelList = () => {
           payload: data.message
         })
       }, false);
-      await RestUtil.get(API_CHANNELSECOND)
+      // await RestUtil.get(API_CHANNELSECOND)
     } catch (e) {
       console.error(e)
     }
@@ -63,7 +63,7 @@ export const getVideo2Data = () => {
           payload: data.message
         })
       }, false);
-      await RestUtil.get(API_CHANNEL)
+      // await RestUtil.get(API_CHANNEL)
     } catch (e) {
       console.error(e)
     }
