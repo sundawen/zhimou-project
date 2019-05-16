@@ -11,7 +11,6 @@ import {
 export const getChannelList = () => {
   const source = new EventSource(API_STREAM_CHANNELONE);
   const hp = source.url.substring(0, source.url.indexOf('stream'))
-  console.log('source1', source);
   source.addEventListener('open', () => {
     console.log('Connected');
   }, false);
@@ -45,7 +44,6 @@ export const getChannelList = () => {
 export const getVideo2Data = () => {
   const source = new EventSource(API_STREAM_CHANNELTWO);
   const hp = source.url.substring(0, source.url.indexOf('stream'))
-  console.log('source2', source);
   source.addEventListener('open', () => {
     console.log('Connected');
   }, false);

@@ -54,7 +54,7 @@ class VideoBox2 extends React.Component {
                           autoPlay="autoPlay"
                           loop="loop"
                           preload="none">
-                          <source src="rtmp://10.112.57.54:1935/live/room" type="rtmp/flv" />
+                          <source src="rtmp://10.112.57.54:1935/live/room2" type="rtmp/flv" />
                         </video>
                       </div>
                     </Card>

@@ -11,8 +11,8 @@ const {Content} = Layout;
 
 class VideoBox1 extends React.Component {
 
-  constructor() {
-    super()
+  constructor(props) {
+    super(props)
     this.state = {
       width:'100%',
       minHeight: '100%',
