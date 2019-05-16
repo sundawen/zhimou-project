@@ -97,7 +97,7 @@ module.exports = {
     compress: false,
     open: true,
     proxy: {
-      '/start': ProxyConfig,
+      // '/start': ProxyConfig,
       '/stream': ProxyConfig,
       '/HistoryError': ProxyConfig,
       '/HistoryErrorDetails': ProxyConfig,
