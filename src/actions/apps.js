@@ -1,8 +1,8 @@
 import * as types from '../constants/ActionTypes'
 // import RestUtil from '../utils/RestUtil'
 import {
-  API_CHANNEL,
-  API_CHANNELSECOND,
+  // API_CHANNEL,
+  // API_CHANNELSECOND,
   API_STREAM_CHANNELONE,
   API_STREAM_CHANNELTWO,
   // API_HISTORY_ERROR_FIRST,
@@ -10,6 +10,7 @@ import {
 
 export const getChannelList = () => {
   const source = new EventSource(API_STREAM_CHANNELONE);
+  const hp = source.url.substring(0, source.url.indexOf('stream'))
   console.log('source1', source);
   source.addEventListener('open', () => {
     console.log('Connected');
@@ -27,6 +28,7 @@ export const getChannelList = () => {
     try {
       source.addEventListener('greeting', e => {
         let data = JSON.parse(e.data);
+        data.message.img = hp.concat(data.message.img);
         console.log(`data: ${data.message}`);
         dispatch({
           type: types.CHANNEL,
@@ -42,6 +44,7 @@ export const getChannelList = () => {
 
 export const getVideo2Data = () => {
   const source = new EventSource(API_STREAM_CHANNELTWO);
+  const hp = source.url.substring(0, source.url.indexOf('stream'))
   console.log('source2', source);
   source.addEventListener('open', () => {
     console.log('Connected');
@@ -59,6 +62,7 @@ export const getVideo2Data = () => {
     try {
       source.addEventListener('greeting', e => {
         let data = JSON.parse(e.data);
+        data.message.img = hp.concat(data.message.img);
         console.log(`data: ${data.message}`);
         dispatch({
           type: types.CHANNELSECOND,

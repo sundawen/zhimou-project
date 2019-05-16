@@ -3,7 +3,6 @@ import { injectIntl } from 'react-intl'
 import {Col, Layout, Row, Card} from 'antd';
 import styles from './VideoBox2.scss'
 import zh_CN from '../../../i18n/zh_CN'
-import { API_DEFAULTBACK } from '../../../constants/API'
 import bg from '../bg.png'
 import videojs from 'video.js';
 import 'video.js/dist/video-js.min.css';
@@ -77,7 +76,7 @@ class VideoBox2 extends React.Component {
                           </Col>
                           <Col span={10}>
                             <img className={styles.boxImg}
-                              src={API_DEFAULTBACK + videoImg}
+                              src={videoImg}
                               onError={(e) => {e.target.onerror = null;e.target.src=bg}}
                             />
                           </Col>
