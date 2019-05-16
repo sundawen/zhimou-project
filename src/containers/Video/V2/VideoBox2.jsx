@@ -43,7 +43,7 @@ class VideoBox2 extends React.Component {
             <div className={styles.mainBody}>
               <div className={styles.mainCard}>
                 <Row gutter={16}>
-                  <Col span={11}>
+                  <Col xl={9} lg={24} md={24} sm={24} xs={24}>
                     <Card title={zh_CN.ChannelTwo} bordered={false}>
                     <div className={styles.cardHeight}>
                         <video
@@ -55,12 +55,12 @@ class VideoBox2 extends React.Component {
                           autoPlay="autoPlay"
                           loop="loop"
                           preload="none">
-                          <source src="rtmp://58.200.131.2:1935/livetv/hunantv" type="rtmp/flv" />
+                          <source src="rtmp://10.112.57.54:1935/live/room" type="rtmp/flv" />
                         </video>
                       </div>
                     </Card>
                   </Col>
-                  <Col span={13}>
+                  <Col xl={15} lg={24} md={24} sm={24} xs={24}>
                     <Card hoverable title={zh_CN.RealTimeFaultData} bordered={false} className={styles.noCursor}>
                       <div className={styles.cardHeight}>
                         <Row gutter={16}>
