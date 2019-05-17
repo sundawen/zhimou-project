@@ -9,7 +9,6 @@ import Foot from '../../components/Foot/Foot'
 import VideoBox1 from '../Video/V1/VideoBox1'
 import VideoBox2 from '../Video/V2/VideoBox2'
 import { getChannelList } from '../../actions/apps'
-import { getVideo2Data } from '../../actions/apps'
 import { Layout } from 'antd';
 // css
 import styles from './Video.scss'
@@ -20,29 +19,39 @@ class Video extends React.Component {
     this.state = {
       channelList: {
         img: '',
-        info: ''
+        info: {},
+        channel: '',
       },
-      videoData2List: {
+      box1: {
         img: '',
-        info: ''
+        info: {},
+        channel: '',
+      },
+      box2: {
+        img: '',
+        info: {},
+        channel: '',
       },
     }
   }
   componentWillMount = () => {
     this.props.getChannelList()
-    this.props.getVideo2Data()
   }
   componentDidMount = () => {
   }
 
   componentWillReceiveProps = (nextProps) => {
-    if (this.props.channelList !== nextProps.channelList) {
-      this.setState({ channelList: nextProps.channelList }, () => {
-      })
+    if (this.props.channelList.channel == '1') {
+      if (this.props.channelList !== nextProps.channelList) {
+        this.setState({ box1: nextProps.channelList }, () => {
+        })
+      }
     }
-    if (this.props.videoData2List !== nextProps.videoData2List) {
-      this.setState({ videoData2List: nextProps.videoData2List }, () => {
-      })
+    if (this.props.channelList.channel == '2') {
+      if (this.props.channelList !== nextProps.channelList) {
+        this.setState({ box2: nextProps.channelList }, () => {
+        })
+      }
     }
   }
 
@@ -51,8 +60,8 @@ class Video extends React.Component {
       <Layout>
         <Layout>
           <Header/>
-          <VideoBox1 videoBox1Data = {this.state.channelList}/>
-          <VideoBox2 videoBox2Data = {this.state.videoData2List}/>
+          <VideoBox1 videoBox1Data = {this.state.box1}/>
+          <VideoBox2 videoBox2Data = {this.state.box2}/>
           <Foot />
         </Layout>
       </Layout>
@@ -63,13 +72,11 @@ class Video extends React.Component {
 const mapStateToProps = (state) => {
   return {
     channelList: state.channelList,
-    videoData2List: state.videoData2List,
   }
 }
 const mapDispatchToProps = (dispatch) => {
   return {
     getChannelList: bindActionCreators(getChannelList, dispatch),
-    getVideo2Data: bindActionCreators(getVideo2Data, dispatch),
   }
 }
 

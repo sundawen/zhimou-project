@@ -79,19 +79,9 @@ class FaultChart extends React.Component {
     };
   }
 
-  componentWillMount = () => {
-    // this.props.getAnalysis1(1, '2019-01-01', '2019-12-31', 'All')
-  }
-
   componentDidMount = () => {
     this.getTabData();
   }
-  // componentWillReceiveProps = (nextProps) => {
-  //   if (this.props.analysisList1 !== nextProps.analysisList1) {
-  //     this.setState({ analysisList1: nextProps.analysisList1 }, () => {
-  //     })
-  //   }
-  // }
 
   /**
    * 获取根据当前选择的日期获取故障数据
@@ -486,17 +476,4 @@ class FaultChart extends React.Component {
 }
 
 export default injectIntl(FaultChart)
-
-// const mapStateToProps = (state) => {
-//   return {
-//     analysisList1: state.analysisList1,
-//   }
-// }
-// const mapDispatchToProps = (dispatch) => {
-//   return {
-//     getAnalysis1: bindActionCreators(getAnalysis1, dispatch),
-//   }
-// }
-
-// export default connect(mapStateToProps, mapDispatchToProps)(injectIntl(FaultChart))
 
