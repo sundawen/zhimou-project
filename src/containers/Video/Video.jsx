@@ -22,6 +22,11 @@ class Video extends React.Component {
         info: {},
         channel: '',
       },
+      nullList: {
+        img: '',
+        info: {},
+        channel: '',
+      },
       box1: {
         img: '',
         info: {},
@@ -41,17 +46,25 @@ class Video extends React.Component {
   }
 
   componentWillReceiveProps = (nextProps) => {
-    if (this.props.channelList.channel == '1') {
-      if (this.props.channelList !== nextProps.channelList) {
-        this.setState({ box1: nextProps.channelList }, () => {
-        })
-      }
-    }
-    if (this.props.channelList.channel == '2') {
-      if (this.props.channelList !== nextProps.channelList) {
-        this.setState({ box2: nextProps.channelList }, () => {
-        })
-      }
+    if (this.props.channelList.channel == "1") {
+      this.setState({ box1: this.props.channelList }, () => {
+      })
+      this.setState({ box2: this.state.nullList }, () => {
+      })
+      // if (this.props.channelList !== nextProps.channelList) {
+      //   this.setState({ box1: this.props.channelList }, () => {
+      //   })
+      // }
+    }else if (this.props.channelList.channel == "2") {
+      this.setState({ box2: this.props.channelList }, () => {
+      })
+      this.setState({ box1: this.state.nullList }, () => {
+      })
+    } else {
+      this.setState({ box1: this.state.nullList }, () => {
+      })
+      this.setState({ box2: this.state.nullList }, () => {
+      })
     }
   }
 
