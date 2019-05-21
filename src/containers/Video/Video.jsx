@@ -9,7 +9,6 @@ import Foot from '../../components/Foot/Foot'
 import VideoBox1 from '../Video/V1/VideoBox1'
 import VideoBox2 from '../Video/V2/VideoBox2'
 import { getChannelList } from '../../actions/apps'
-import { Layout } from 'antd';
 // css
 import styles from './Video.scss'
 
@@ -70,14 +69,12 @@ class Video extends React.Component {
 
   render() {
     return (
-      <Layout>
-        <Layout>
-          <Header/>
-          <VideoBox1 videoBox1Data = {this.state.box1}/>
-          <VideoBox2 videoBox2Data = {this.state.box2}/>
-          <Foot />
-        </Layout>
-      </Layout>
+      <div>
+        <Header />
+        <VideoBox1 videoBox1Data={this.state.box1} />
+        <VideoBox2 videoBox2Data={this.state.box2} />
+        <Foot />
+      </div>
     )
   }
 }

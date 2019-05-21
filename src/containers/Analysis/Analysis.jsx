@@ -29,15 +29,13 @@ class Analysis extends React.Component {
 
   render() {
     return (
-      <Layout>
-        <Layout>
-          <Header />
-          <Content className={styles.wrapper}>
-            <FaultChart />
-          </Content>
-          <Foot />
-        </Layout>
-      </Layout>
+      <div>
+        <Header />
+        <Content className={styles.wrapper}>
+          <FaultChart />
+        </Content>
+        <Foot />
+      </div>
     )
   }
 }

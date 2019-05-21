@@ -29,6 +29,8 @@ const zh_CN = {
     'video1': '监控一',
     'video2': '监控二',
     'operation': '操作',
+    'Attribute': '属性',
+    'Result':'查询结果'
 }
 
 export default zh_CN;
