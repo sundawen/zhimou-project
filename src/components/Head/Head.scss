@@ -1,130 +1,26 @@
 $fontFamily: "Roboto-Regular";
 $fontColor: #09aff1;
 $fontColorActive: #07fbe6f3;
-.nav {
+.wrapper {
   height: 60px;
   width: 100%;
   top: 0;
-  background: url('../../components/head.png') no-repeat center center fixed;
+  background: url('../../components/head.png') no-repeat;
   background-size:100% 100%;
-  box-shadow: 0 -5px 15px #07fbe6f3;
   position: fixed;
   z-index: 9998;
   transition: top 1s ease; // dashboard full screen switch
-  ul {
-    margin: 0;
-    padding: 0;
-    list-style-type: none;
-    height: 100%;
+  img {
+    margin: 5px 40px;
   }
   .left {
-    margin: 0;
-    height: 100%;
-    width: 232px;
-    display: flex;
-    flex-direction: row;
-    flex-wrap: nowrap;
-    justify-content: center;
-    align-items: center;
-    float: left;
+    padding: 5px 0 0 63px;
   }
   .middle {
-    position: absolute;
-    margin-left: 240px;
-    height: 100%;
-    //width: calc(100% - 320px - 232px);
-    .selected {
-      color: $fontColorActive;
-      font-weight: 500;
-      &:after {
-        content: '';
-        display: block;
-        height: 3px;
-        width: 100%;
-        background-color: $fontColorActive;
-        position: absolute;
-        bottom: 0;
-        transform: scaleX(1);
-        transition: all .2s ease;
-      }
-    }
-    .logoTitle {
-      color: #07fbe6f3;
-      height: 100%;
-      margin-right: 100px;
-      display: flex;
-      align-items: center;
-      box-sizing: border-box;
-    }
-    ul {
-      height: 100%;
-      display: flex;
-      flex-direction: row;
-      flex-wrap: nowrap;
-      justify-content: flex-start;
-      align-items: center;
-      li {
-        a {
-          text-decoration: none;
-          color: $fontColor;
-          height: 100%;
-          display: flex;
-          align-items: center;
-          box-sizing: border-box;
-          position: relative;
-          transition: all .2s ease;
-          outline: none;
-          &:hover {
-            color: $fontColorActive;
-            font-weight: 500;
-          }
-          &:after {
-            content: '';
-            display: block;
-            height: 3px;
-            width: 100%;
-            background-color: $fontColorActive;
-            position: absolute;
-            bottom: 0;
-            transform: scaleX(0);
-            transition: all .2s ease;
-          }
-          &:hover:after {
-            transform: scaleX(1);
-          }
-        }
-        font-family: 'MFYueYuan_Noncommercial-Regular';
-        font-size: 20px;
-        height: 100%;
-        margin-right: 62px;
-      }
-    }
-  }
-  .right {
-    display: flex;
-    flex-wrap: nowrap;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-around;
-    min-width: 280px;
-    max-width: 370px;
-    margin-right: 40px;
-    height: 100%;
-    float: right;
-    .name {
-      overflow: hidden;
-      white-space: nowrap;
-      text-overflow: ellipsis;
-      color: $fontColor;
-      font-size: 16px;
-      font-family: $fontFamily;
-      cursor: pointer;
-      transition: all .2s ease;
-      height: 60px;
-      line-height: 60px;
-      &:hover {
-        color: $fontColorActive;
-      }
-    }
+    color: $fontColor;
+    text-align: center;
+    line-height: 60px;
+    font-family: 'MFYueYuan_Noncommercial-Regular';
+    font-size: 20px;
   }
 }
