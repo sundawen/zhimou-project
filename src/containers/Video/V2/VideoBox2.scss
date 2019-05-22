@@ -1,10 +1,8 @@
 .wrapper {
     margin: '24px 16px 0';
     .mainBody{
-        background: '#fff';
         min-height: 420px;
         .mainCard {
-            background-color:'#ECECEC';
             padding: 15px;
             .noCursor{
                 cursor: default;
@@ -20,8 +18,20 @@
                     width: 100%;
                     height: 270px;
                 }
-                table, span{
+                table, span {
                     color: white;
+                    width: 100%;
+                    text-align: left;
+                    border-radius: 4px 4px 0 0;
+                    border-collapse: collapse;
+                }
+                    th, td {
+                        padding: 8px 8px;
+                        border-bottom: 1px solid #e8e8e8;
+                        border-radius: 4px;
+                    }
+                img {
+                    margin-top: 30px;
                 }
                 ul {
                     margin-top: 14px;

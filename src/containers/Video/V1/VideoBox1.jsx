@@ -17,53 +17,6 @@ class VideoBox1 extends React.Component {
       width:'100%',
       minHeight: '100%',
       height: '100%',
-      columns: [
-        {
-          title: zh_CN.Attribute,
-          dataIndex: 'attribute',
-        },
-        {
-          title: zh_CN.Result,
-          dataIndex: 'result',
-        },
-      ],
-      data: [
-        {
-          key: '1',
-          attribute: zh_CN.cameraID,
-          result: this.props.videoBox1Data.info.CameraID,
-        },
-        {
-          key: '2',
-          attribute: zh_CN.errorType,
-          result: this.props.videoBox1Data.info.ErrorType,
-        },
-        {
-          key: '3',
-          attribute: zh_CN.productionLineID,
-          result: this.props.videoBox1Data.info.ProductionLineID,
-        },
-        {
-          key: '4',
-          attribute: zh_CN.model,
-          result: this.props.videoBox1Data.info.Model,
-        },
-        {
-          key: '5',
-          attribute: zh_CN.serialNum,
-          result: this.props.videoBox1Data.info.SerialNum,
-        },
-        {
-          key: '6',
-          attribute: zh_CN.location,
-          result: this.props.videoBox1Data.info.Location,
-        },
-        {
-          key: '7',
-          attribute: zh_CN.date,
-          result: this.props.videoBox1Data.info.Date,
-        },
-      ],
     }
   }
 
@@ -106,7 +59,7 @@ class VideoBox1 extends React.Component {
                       </div>
                     </Card>
                   </Col>
-                  <Col xl={15} lg={24} md={24} sm={24} xs={24}>
+                  <Col xl={8} lg={24} md={24} sm={24} xs={24}>
                     <div className={styles.cardTitle}>
                       <div className={styles.cardHead}>{zh_CN.RealTimeFaultData}</div>
                     </div>
@@ -114,7 +67,42 @@ class VideoBox1 extends React.Component {
                       <div className={styles.cardHeight}>
                         <Row gutter={16}>
                           <Col span={14} style={{height:300}}>
-                            <Table columns={this.state.columns} dataSource={this.state.data} size="small" pagination={false}/>
+                            <table>
+                              <thead>
+                                <th>{zh_CN.Attribute}</th>
+                                <th>{zh_CN.Result}</th>
+                              </thead>
+                              <tbody>
+                                <tr>
+                                  <td>{zh_CN.cameraID}</td>
+                                  <td>{this.props.videoBox1Data.info.CameraID}</td>
+                                </tr>
+                                <tr>
+                                  <td>{zh_CN.errorType}</td>
+                                  <td>{this.props.videoBox1Data.info.ErrorType}</td>
+                                </tr>
+                                <tr>
+                                  <td>{zh_CN.productionLineID}</td>
+                                  <td>{this.props.videoBox1Data.info.ProductionLineID}</td>
+                                </tr>
+                                <tr>
+                                  <td>{zh_CN.model}</td>
+                                  <td>{this.props.videoBox1Data.info.Model}</td>
+                                </tr>
+                                <tr>
+                                  <td>{zh_CN.serialNum}</td>
+                                  <td>{this.props.videoBox1Data.info.SerialNum}</td>
+                                </tr>
+                                <tr>
+                                  <td>{zh_CN.location}</td>
+                                  <td>{this.props.videoBox1Data.info.Location}</td>
+                                </tr>
+                                <tr>
+                                  <td>{zh_CN.date}</td>
+                                  <td>{this.props.videoBox1Data.info.Date}</td>
+                                </tr>
+                              </tbody>
+                            </table>
                           </Col>
                           <Col span={10}>
                             <img className={styles.boxImg}
@@ -125,6 +113,8 @@ class VideoBox1 extends React.Component {
                         </Row>
                       </div>
                     </Card>
+                  </Col>
+                  <Col xl={7} lg={24} md={24} sm={24} xs={24}>
                   </Col>
                 </Row>
               </div>

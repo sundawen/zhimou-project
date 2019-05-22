@@ -28,12 +28,28 @@ class Video extends React.Component {
       },
       box1: {
         img: '',
-        info: {},
+        info: {
+          // CameraID: 'Cam00148',
+          // ErrorType: '蓝屏',
+          // ProductionLineID: 'BJ_01',
+          // Model: 'Lenovo Y470',
+          // SerialNum: 'LBJ00120331CN',
+          // Location: 'Beijing',
+          // Date: '2019-04-30 16:59:42'
+        },
         channel: '',
       },
       box2: {
         img: '',
-        info: {},
+        info: {
+          // CameraID: 'Cam00148',
+          // ErrorType: '蓝屏',
+          // ProductionLineID: 'BJ_01',
+          // Model: 'Lenovo Y470',
+          // SerialNum: 'LBJ00120331CN',
+          // Location: 'Beijing',
+          // Date: '2019-04-30 16:59:42'
+        },
         channel: '',
       },
     }
