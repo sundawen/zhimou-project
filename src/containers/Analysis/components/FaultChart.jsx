@@ -67,8 +67,8 @@ class FaultChart extends React.Component {
       },
       sortedInfo      : {},                    // 排序
       apiUrl          : {                        // API URL
-        queryHistoryError       : '/HistoryError',
-        queryHistoryErrorDetails: '/HistoryError/Details',
+        queryHistoryError       : '/HistoryError/total',
+        queryHistoryErrorDetails: '/HistoryError/details',
       },
       camIds          : [{                       // camId 集合
         camId: 1, title: zh_CN.video1,
@@ -363,9 +363,6 @@ class FaultChart extends React.Component {
       dataIndex: 'Model',
       sorter: (a, b) => a.Model.length - b.Model.length,
       sortOrder: sortedInfo.columnKey === 'Model' && sortedInfo.order,
-    }, {
-      title: zh_CN.serialNum,
-      dataIndex: 'SerialNum',
     }, {
       title: zh_CN.location,
       dataIndex: 'Location',

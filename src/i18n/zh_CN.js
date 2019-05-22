@@ -7,7 +7,6 @@ const zh_CN = {
     'errorType':'设备故障类型',
     'productionLineID':'生产线ID',
     'model':'故障设备型号',
-    'serialNum':'故障设备序列号',
     'location':'工厂地址',
     'date':'故障发生时间',
     'realTimeVideo':'实时监控',

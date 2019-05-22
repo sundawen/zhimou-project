@@ -90,10 +90,6 @@ class VideoBox1 extends React.Component {
                                   <td>{this.props.videoBox1Data.info.Model}</td>
                                 </tr>
                                 <tr>
-                                  <td>{zh_CN.serialNum}</td>
-                                  <td>{this.props.videoBox1Data.info.SerialNum}</td>
-                                </tr>
-                                <tr>
                                   <td>{zh_CN.location}</td>
                                   <td>{this.props.videoBox1Data.info.Location}</td>
                                 </tr>

@@ -33,7 +33,6 @@ class Video extends React.Component {
           // ErrorType: '蓝屏',
           // ProductionLineID: 'BJ_01',
           // Model: 'Lenovo Y470',
-          // SerialNum: 'LBJ00120331CN',
           // Location: 'Beijing',
           // Date: '2019-04-30 16:59:42'
         },
@@ -46,7 +45,6 @@ class Video extends React.Component {
           // ErrorType: '蓝屏',
           // ProductionLineID: 'BJ_01',
           // Model: 'Lenovo Y470',
-          // SerialNum: 'LBJ00120331CN',
           // Location: 'Beijing',
           // Date: '2019-04-30 16:59:42'
         },
