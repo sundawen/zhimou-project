@@ -59,7 +59,7 @@ class VideoBox1 extends React.Component {
                       </div>
                     </Card>
                   </Col>
-                  <Col xl={8} lg={24} md={24} sm={24} xs={24}>
+                  <Col xl={10} lg={24} md={24} sm={24} xs={24}>
                     <div className={styles.cardTitle}>
                       <div className={styles.cardHead}>{zh_CN.RealTimeFaultData}</div>
                     </div>
@@ -114,7 +114,7 @@ class VideoBox1 extends React.Component {
                       </div>
                     </Card>
                   </Col>
-                  <Col xl={7} lg={24} md={24} sm={24} xs={24}>
+                  <Col xl={5} lg={24} md={24} sm={24} xs={24}>
                   </Col>
                 </Row>
               </div>
