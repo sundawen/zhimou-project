@@ -68,7 +68,7 @@ class FaultChart extends React.Component {
       sortedInfo      : {},                    // 排序
       apiUrl          : {                        // API URL
         queryHistoryError       : '/HistoryError',
-        queryHistoryErrorDetails: '/HistoryErrorDetails',
+        queryHistoryErrorDetails: '/HistoryError/Details',
       },
       camIds          : [{                       // camId 集合
         camId: 1, title: zh_CN.video1,
