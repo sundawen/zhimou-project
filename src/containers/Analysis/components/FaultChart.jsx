@@ -1,8 +1,6 @@
 // vendor
 import React from 'react';
 import { injectIntl } from 'react-intl';
-// import { connect } from 'react-redux'
-// import { bindActionCreators } from 'redux'
 import { 
   Layout, 
   Card, 
@@ -19,7 +17,6 @@ import {
 } from 'antd';
 import { Chart, Tooltip, Axis, Legend, Geom} from 'bizcharts';
 import { getTimeDistance } from '../../../utils/utils';
-// import { getAnalysis1 } from '../../../actions/apps'
 import locale from 'antd/lib/date-picker/locale/zh_CN';
 import zh_CN from '../../../i18n/zh_CN'
 

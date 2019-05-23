@@ -6,8 +6,12 @@ import zh_CN from '../../../i18n/zh_CN'
 import bg from '../../../components/backGround.png'
 import videojs from 'video.js';
 import 'video.js/dist/video-js.min.css';
+import { G2, Chart, Geom, Axis, Tooltip, Coord, Label, Legend, View, Guide, Shape, Facet, Util } from "bizcharts";
+import DataSet from "@antv/data-set";
 
 const {Content} = Layout;
+const { DataView } = DataSet;
+const { Html } = Guide;
 
 class VideoBox1 extends React.Component {
 
@@ -17,6 +21,7 @@ class VideoBox1 extends React.Component {
       width:'100%',
       minHeight: '100%',
       height: '100%',
+      chartData: [],
     }
   }
 
@@ -24,6 +29,7 @@ class VideoBox1 extends React.Component {
     this.player = videojs('video1', {}, function onPlayerReady() {
       this.play();
     })
+    this.getCuuentDateData();
   }
 
   componentWillUnmount() {
@@ -32,8 +38,43 @@ class VideoBox1 extends React.Component {
     }
   }
 
+  getCuuentDateData() {
+    let json = {"totalnum":"47","info":[{"blueScreen":"18","smear":"6","tortuosity":"23"}]};
+    const data = [
+      {
+        item: zh_CN.blueScreen,
+        count: 22
+      },
+      {
+        item: zh_CN.smear,
+        count: 33
+      },
+      {
+        item: zh_CN.tortuosity,
+        count: 15
+      }
+    ];
+    this.setState({ chartData: data, });
+  }
+
     render() {
       const videoImg = this.props.videoBox1Data.img
+      const { chartData } = this.state;
+      const dv = new DataView()
+      dv.source(chartData).transform({
+        type: "percent",
+        field: "count",
+        dimension: "item",
+        as: "percent"
+      });
+      const cols = {
+        percent: {
+          formatter: val => {
+            val = val * 100 + "%";
+            return val;
+          }
+        }
+      };
         return (
           <Content className={styles.wrapper}>
             <div className={styles.mainBody}>
@@ -59,7 +100,7 @@ class VideoBox1 extends React.Component {
                       </div>
                     </Card>
                   </Col>
-                  <Col xl={10} lg={24} md={24} sm={24} xs={24}>
+                  <Col xl={9} lg={24} md={24} sm={24} xs={24}>
                     <div className={styles.cardTitle}>
                       <div className={styles.cardHead}>{zh_CN.RealTimeFaultData}</div>
                     </div>
@@ -69,8 +110,10 @@ class VideoBox1 extends React.Component {
                           <Col span={14} style={{height:300}}>
                             <table>
                               <thead>
-                                <th>{zh_CN.Attribute}</th>
-                                <th>{zh_CN.Result}</th>
+                                <tr>
+                                  <th>{zh_CN.Attribute}</th>
+                                  <th>{zh_CN.Result}</th>
+                                </tr>
                               </thead>
                               <tbody>
                                 <tr>
@@ -110,7 +153,60 @@ class VideoBox1 extends React.Component {
                       </div>
                     </Card>
                   </Col>
-                  <Col xl={5} lg={24} md={24} sm={24} xs={24}>
+                  <Col xl={6} lg={24} md={24} sm={24} xs={24}>
+                    <Chart
+                      height={400}
+                      data={dv}
+                      scale={cols}
+                      padding={[20, 50, 20, 50]}
+                      forceFit
+                    >
+                      <Coord type={"theta"} radius={0.9} innerRadius={0.8} />
+                      <Axis name="percent" />
+                      <Legend
+                        position="left"
+                        offsetY={-300 / 2 + 120}
+                        offsetX={-100}
+                      />
+                      <Tooltip
+                        showTitle={false}
+                        itemTpl="<li><span style=&quot;background-color:{color};&quot; class=&quot;g2-tooltip-marker&quot;></span>{name}: {value}</li>"
+                      />
+                      <Guide>
+                        <Html
+                          position={["50%", "50%"]}
+                          html="<div style=&quot;color:white;font-size:1.16em;text-align: center;width: 10em;&quot;>当日监控一故障统计<br><span style=&quot;color:white;font-size:2.5em&quot;>68</span>台</div>"
+                          alignX="middle"
+                          alignY="middle"
+                        />
+                      </Guide>
+                      <Geom
+                        type="intervalStack"
+                        position="percent"
+                        color="item"
+                        tooltip={[
+                          "item*percent",
+                          (item, percent) => {
+                            percent = percent * 100 + "%";
+                            return {
+                              name: item,
+                              value: percent
+                            };
+                          }
+                        ]}
+                        style={{
+                          lineWidth: 1,
+                          stroke: "#fff"
+                        }}
+                      >
+                        <Label
+                          content="percent"
+                          formatter={(val, item) => {
+                            return item.point.item;
+                          }}
+                        />
+                      </Geom>
+                    </Chart>
                   </Col>
                 </Row>
               </div>
