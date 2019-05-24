@@ -103,15 +103,15 @@ class Video extends React.Component {
       let data = [
         {
           item: zh_CN.blueScreen,
-          count: json.info[0].blueScreen
+          count: json.info.blueScreen
         },
         {
           item: zh_CN.smear,
-          count: json.info[0].smear
+          count: json.info.smear
         },
         {
           item: zh_CN.tortuosity,
-          count: json.info[0].tortuosity
+          count: json.info.tortuosity
         }
       ];
       this.setState({
