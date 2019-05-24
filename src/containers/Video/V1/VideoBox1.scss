@@ -1,12 +1,11 @@
 .wrapper {
     padding-top: 64px;
-    margin: '24px 16px 0';
     box-shadow: 0 -5px 15px black;
     .mainBody{
         background: '#fff';
         min-height: 420px;
         .mainCard {
-            padding: 15px;
+            padding: 0 15px;
             .noCursor{
                 cursor: default;
             }
