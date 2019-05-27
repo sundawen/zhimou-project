@@ -339,6 +339,7 @@ class FaultChart extends React.Component {
           className={styles.picker}
           showTime={{format:"HH:mm:ss"}}
           format="YYYY-MM-DD HH:mm:ss"
+          allowClear={false}
         />
       </div>
     );
@@ -390,6 +391,7 @@ class FaultChart extends React.Component {
             showTime={{format:"HH:mm:ss"}}
             format="YYYY-MM-DD HH:mm:ss"
             className={styles.rangePicker}
+            allowClear={false}
           />
           <Select defaultValue={tmpSearchs.errorType} className={styles.select}
             onChange={this.changeSearchErrorType.bind(this)}>

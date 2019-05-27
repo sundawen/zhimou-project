@@ -10,7 +10,7 @@
           display: inline-block;
           margin-right: 24px;
           a {
-            color: rgba(0,0,0,.65);
+            color: #fff;
             margin-left: 24px;
           }
           .currentDate {
@@ -23,6 +23,7 @@
       }
       .searchBar {
         padding-bottom: 20px;
+        color: #fff;
         .searchBtn {
           float: right;
         }
@@ -50,4 +51,102 @@
 }
 .mainBody :global(.ant-tabs-bar) {
   padding-left: 16px;
+}
+.mainBody :global(.ant-card) {
+  background: none;
+}
+.mainBody :global(.ant-card-bordered) {
+  border: 1px solid #2e2ef1;
+  margin-bottom: 60px;
+}
+.mainBody :global(.ant-tabs-bar) {
+  border-bottom: 1px solid #2e2ef1;
+}
+.mainBody :global(.ant-tabs .ant-tabs-large-bar .ant-tabs-tab) {
+  color: #fff;
+}
+.mainBody :global(.ant-tabs .ant-tabs-large-bar .ant-tabs-tab-active.ant-tabs-tab) {
+  color: #09aff1;
+}
+.mainBody :global(.ant-tabs-ink-bar) {
+  background-color: #2e2ef1;
+}
+.mainBody :global(.ant-tabs .ant-tabs-large-bar .ant-tabs-tab:hover) {
+  color: #09aff1;
+}
+.mainBody :global(.ant-table-thead > tr ) {
+  background: none;
+}
+.mainBody :global(.ant-table-thead > tr > th) {
+  color: #fff;
+  border-bottom: 1px solid #e8e8e8;
+}
+.mainBody :global(.ant-table-thead > tr > th.ant-table-column-sort) {
+  background: none;
+}
+.mainBody :global(.ant-table-thead > tr > th.ant-table-column-has-actions.ant-table-column-has-sorters:hover) {
+  background: none;
+}
+.mainBody :global(.ant-table-tbody > tr > td) {
+  border-bottom: 1px solid #e8e8e8;
+  color: #fff;
+}
+.mainBody :global(.ant-table-tbody > tr:hover:not(.ant-table-expanded-row) > td) {
+  background: none;
+}
+.mainBody :global(.ant-empty-normal .ant-empty-image) {
+  display: none;
+}
+.mainBody :global(.ant-table-placeholder) {
+  background: none;
+  border-bottom: 1px solid #2e2ef1;
+}
+.mainBody :global(.ant-empty-normal) {
+  color: #09aff1;
+}
+.mainBody :global(.ant-pagination-disabled a) {
+  color: rgba(255,255,255,0.8);
+}
+.mainBody :global(.ant-pagination-disabled:hover a) {
+  color: rgba(255,255,255,0.8);
+}
+.mainBody :global(.ant-pagination-disabled:focus a) {
+  color: rgba(255,255,255,0.8);
+}
+.mainBody :global(.ant-pagination-disabled .ant-pagination-item-link) {
+  color: rgba(255,255,255,0.8);
+}
+.mainBody :global(.ant-pagination-disabled:hover .ant-pagination-item-link) {
+  color: rgba(255,255,255,0.8);
+}
+.mainBody :global(.ant-pagination-disabled:focus .ant-pagination-item-link) {
+  color: rgba(255,255,255,0.8);
+}
+.mainBody :global(.ant-pagination-prev a) {
+  color: rgba(255,255,255,0.8);
+}
+.mainBody :global(.ant-pagination-next a) {
+  color: rgba(255,255,255,0.8);
+}
+.mainBody :global(.ant-pagination-item a) {
+  color: rgba(255,255,255,0.8);
+}
+.mainBody :global(.ant-pagination-item:focus a) {
+  color: #1890ff;
+}
+.mainBody :global(.ant-pagination-item:hover a) {
+  color: #1890ff;
+}
+.mainBody :global(.ant-pagination-item-active a) {
+  color: #1890ff;
+}
+.mainBody :global(.ant-pagination-jump-prev .ant-pagination-item-container .ant-pagination-item-ellipsis) {
+  color: rgba(255,255,255,0.8);
+}
+.mainBody :global(.ant-pagination-jump-next .ant-pagination-item-container .ant-pagination-item-ellipsis) {
+  color: rgba(255,255,255,0.8);
+}
+.mainBody :global(.ant-pagination-item-active) {
+  // border-color: transparent;
+  background: transparent;
 }
