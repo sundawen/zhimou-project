@@ -1,5 +1,5 @@
 const zh_CN = {
-    'logoTitle': '智眸 - 5G智慧工厂',
+    'logoTitle': '智眸 - 5G与边缘计算智慧工厂',
     'ChannelOne':'中国 武汉 光谷工厂 Thinkpad X1 产线：LNT001',
     'ChannelTwo':'中国 深圳 南山工厂 联想小新  产线：LNN001',
     'RealTimeFaultData':'AI实时识别结果',

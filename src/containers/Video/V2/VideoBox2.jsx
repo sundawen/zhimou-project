@@ -66,7 +66,7 @@ class VideoBox2 extends React.Component {
                 <div className={styles.noCursor} className={styles.cardBack}>
                   <div className={styles.cardHeight}>
                     <Row gutter={16}>
-                      <Col span={12} style={{ height: 300 }} >
+                      <Col span={12}>
                         <table>
                           <thead>
                             <tr>
@@ -102,7 +102,7 @@ class VideoBox2 extends React.Component {
                           </tbody>
                         </table>
                       </Col>
-                      <Col span={12} style={{ height: 300 }}>
+                      <Col span={12}>
                         <img className={styles.boxImg}
                           src={videoImg}
                           onError={(e) => { e.target.onerror = null; e.target.src = bg }}

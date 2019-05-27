@@ -73,8 +73,8 @@ class Video extends React.Component {
     if (this.props.channelList.channel == "1") {
       this.setState({ box1: this.props.channelList }, () => {
       })
-      this.setState({ box2: this.state.nullList }, () => {
-      })
+      // this.setState({ box2: this.state.nullList }, () => {
+      // })
       this.getCurrentInfo();
       // if (this.props.channelList !== nextProps.channelList) {
       //   this.setState({ box1: this.props.channelList }, () => {
@@ -83,8 +83,8 @@ class Video extends React.Component {
     } else if (this.props.channelList.channel == "2") {
       this.setState({ box2: this.props.channelList }, () => {
       })
-      this.setState({ box1: this.state.nullList }, () => {
-      })
+      // this.setState({ box1: this.state.nullList }, () => {
+      // })
       this.getCurrentInfo();
     } else {
       this.setState({ box1: this.state.nullList }, () => {

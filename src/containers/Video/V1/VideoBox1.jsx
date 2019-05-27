@@ -66,7 +66,7 @@ class VideoBox1 extends React.Component {
                     <div className={styles.noCursor} className={styles.cardBack}>
                       <div className={styles.cardHeight}>
                         <Row gutter={16}>
-                          <Col span={12} style={{height:300}}>
+                          <Col span={12}>
                             <table>
                               <thead>
                                 <tr>
