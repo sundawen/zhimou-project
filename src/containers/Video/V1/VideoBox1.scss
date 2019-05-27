@@ -3,7 +3,7 @@
     box-shadow: 0 -5px 15px black;
     .mainBody{
         background: '#fff';
-        min-height: 420px;
+        padding: 24px 0;
         .mainCard {
             padding: 0 15px;
             .noCursor{
@@ -12,7 +12,6 @@
             .cardHeight {
                 height: 300px;
                 min-height: 300px;
-                min-width: 400px;
                 flex: 2;
                 min-height: 100%;
                 .boxImg {
@@ -33,7 +32,7 @@
                         border-radius: 4px;
                     }
                 img {
-                    margin-top: 30px;
+                    // margin-top: 30px;
                 }
             }
         }

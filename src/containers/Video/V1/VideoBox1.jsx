@@ -39,11 +39,11 @@ class VideoBox1 extends React.Component {
             <div className={styles.mainBody}>
               <div className={styles.mainCard}>
                 <Row gutter={16}>
-                  <Col xl={12} lg={24} md={24} sm={24} xs={24}>
+                  <Col xl={9} lg={24} md={24} sm={24} xs={24}>
                     <div className={styles.cardTitle}>
                       <div className={styles.cardHead}>{zh_CN.ChannelOne}</div>
                     </div>
-                    <Card bordered={false} className={styles.cardBack}>
+                    <div className={styles.cardBack}>
                       <div className={styles.cardHeight}>
                         <video
                           style={ { minHeight: this.state.minHeight, height:this.state.height, width:this.state.width } }
@@ -57,16 +57,16 @@ class VideoBox1 extends React.Component {
                           <source src="rtmp://10.112.57.54:1935/live/room" type="rtmp/flv" />
                         </video>
                       </div>
-                    </Card>
+                    </div>
                   </Col>
-                  <Col xl={12} lg={24} md={24} sm={24} xs={24}>
+                  <Col xl={15} lg={24} md={24} sm={24} xs={24}>
                     <div className={styles.cardTitle}>
                       <div className={styles.cardHead}>{zh_CN.RealTimeFaultData}</div>
                     </div>
-                    <Card className={styles.noCursor} className={styles.cardBack}>
+                    <div className={styles.noCursor} className={styles.cardBack}>
                       <div className={styles.cardHeight}>
                         <Row gutter={16}>
-                          <Col span={14} style={{height:300}}>
+                          <Col span={12} style={{height:300}}>
                             <table>
                               <thead>
                                 <tr>
@@ -102,7 +102,7 @@ class VideoBox1 extends React.Component {
                               </tbody>
                             </table>
                           </Col>
-                          <Col span={10}>
+                          <Col span={12}>
                             <img className={styles.boxImg}
                               src={videoImg}
                               onError={(e) => {e.target.onerror = null;e.target.src=bg}}
@@ -110,7 +110,7 @@ class VideoBox1 extends React.Component {
                           </Col>
                         </Row>
                       </div>
-                    </Card>
+                    </div>
                   </Col>
                 </Row>
               </div>

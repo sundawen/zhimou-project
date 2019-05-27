@@ -209,11 +209,11 @@ class Video extends React.Component {
       <div>
         <Header />
         <Row>
-          <Col xl={18} lg={24} md={24} sm={24} xs={24}>
+          <Col xl={16} lg={24} md={24} sm={24} xs={24}>
             <VideoBox1 videoBox1Data={this.state.box1} />
             <VideoBox2 videoBox2Data={this.state.box2} />
           </Col>
-          <Col xl={6} lg={24} md={24} sm={24} xs={24}>
+          <Col xl={8} lg={24} md={24} sm={24} xs={24}>
             <Chart
               height={300}
               data={dv}

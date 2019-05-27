@@ -9,6 +9,8 @@ $fontColorActive: #07fbe6f3;
     padding-left: 20px;
     color: $fontColor;
     z-index: 9998;
+    position: fixed;
+    bottom: 0;
     transition: top 1s ease; // dashboard full screen switch
     ul {
         display: flex;
