@@ -143,14 +143,14 @@ class Video extends React.Component {
   getCurrentInfo() {
     let errorType = this.props.channelList.info.ErrorType;
     if (errorType == 'BlueScreen') {
-      this.state.chartData[0].count++;
-      this.state.chartTotal++;
+      this.state.chart.chartData[0].count++;
+      this.state.chart.chartTotal++;
     } else if (errorType == 'Smear') {
-      this.state.chartData[1].count++;
-      this.state.chartTotal++;
+      this.state.chart.chartData[1].count++;
+      this.state.chart.chartTotal++;
     } else if (errorType == 'Tortuosity') {
-      this.state.chartData[2].count++;
-      this.state.chartTotal++;
+      this.state.chart.chartData[2].count++;
+      this.state.chart.chartTotal++;
     }
   }
 
