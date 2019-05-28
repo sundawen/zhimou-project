@@ -43,6 +43,9 @@
           min-width: 100px;
         }
       }
+      table {
+        height: 29vh;
+      }
     }
   }
 }
@@ -58,6 +61,7 @@
 .mainBody :global(.ant-card-bordered) {
   border: 1px solid #2e2ef1;
   margin-bottom: 60px;
+  height: 85vh;
 }
 .mainBody :global(.ant-tabs-bar) {
   border-bottom: 1px solid #2e2ef1;

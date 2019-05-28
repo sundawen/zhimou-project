@@ -103,15 +103,15 @@ class Video extends React.Component {
       let data = [
         {
           item: zh_CN.blueScreen,
-          count: json.info.blueScreen
+          count: json.info.BuleScreen
         },
         {
           item: zh_CN.smear,
-          count: json.info.smear
+          count: json.info.Smear
         },
         {
           item: zh_CN.tortuosity,
-          count: json.info.tortuosity
+          count: json.info.Tortuosity
         }
       ];
       this.setState({
@@ -121,19 +121,19 @@ class Video extends React.Component {
     }).catch(err => {
       // 测试代码数据
       console.log('测试数据');
-      let json = {"totalnum":30,"info":{"blueScreen":10,"smear":5,"tortuosity":15}};
+      let json = {"totalnum":30,"info":{"BlueScreen":10,"Smear":5,"Tortuosity":15}};
       let data = [
         {
           item: zh_CN.blueScreen,
-          count: json.info.blueScreen
+          count: json.info.BlueScreen
         },
         {
           item: zh_CN.smear,
-          count: json.info.smear
+          count: json.info.Smear
         },
         {
           item: zh_CN.tortuosity,
-          count: json.info.tortuosity
+          count: json.info.Tortuosity
         }
       ];
       this.setState({
