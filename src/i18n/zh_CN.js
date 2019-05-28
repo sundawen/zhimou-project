@@ -29,7 +29,9 @@ const zh_CN = {
     'video2': '监控二',
     'operation': '操作',
     'Attribute': '属性',
-    'Result':'查询结果'
+    'Result':'查询结果',
+    'faultStatisticsOfTheDay': '当日故障统计',
+    'platform': '台'
 }
 
 export default zh_CN;
