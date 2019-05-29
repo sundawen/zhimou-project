@@ -57,7 +57,7 @@ class Video extends React.Component {
         },
         channel: '',
       },
-      chart:{
+      chart: {
         chartData: [],
         chartTotal: 0
       },
@@ -116,7 +116,7 @@ class Video extends React.Component {
     }).catch(err => {
       // 测试代码数据
       console.log('测试数据');
-      let json = {"totalnum":30,"info":{"BlueScreen":10,"Smear":5,"Tortuosity":15}};
+      let json = { "totalnum": 30, "info": { "BlueScreen": 10, "Smear": 5, "Tortuosity": 15 } };
       let data = [
         {
           item: zh_CN.blueScreen,
@@ -166,9 +166,9 @@ class Video extends React.Component {
             <VideoBox2 videoBox2Data={this.state.box2} />
           </Col>
           <Col xl={8} lg={24} md={24} sm={24} xs={24}>
-            <Donut data={chart}/>
-            <Gradient data={chart}/>
-            <Map data={chart}/>
+            <Donut data={chart} />
+            <Gradient data={chart} />
+            <Map />
           </Col>
         </Row>
         <Foot />
