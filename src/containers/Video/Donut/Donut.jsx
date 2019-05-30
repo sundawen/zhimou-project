@@ -11,8 +11,8 @@ class Donut extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            chartData: [],
-            chartTotal: 0
+            tDto: [],
+            tTotal: 0
         }
     }
 
@@ -26,7 +26,7 @@ class Donut extends React.Component {
         const { DataView } = DataSet;
         const { Html } = Guide;
         const dv = new DataView();
-        dv.source(this.props.data.chartData).transform({
+        dv.source(this.props.data.tDto).transform({
             type: "percent",
             field: "count",
             dimension: "item",
@@ -65,7 +65,7 @@ class Donut extends React.Component {
                         <Guide>
                             <Html
                                 position={["50%", "50%"]}
-                                html={() => { return ('<div style=color:white;font-size:1.16em;text-align:center;width: 10em;>' + zh_CN.faultStatisticsOfTheDay + '<br><span style=color:white;font-size:2.5em>' + this.props.data.chartTotal + '</span>' + zh_CN.platform + '') }}
+                                html={() => { return ('<div style=color:white;font-size:1.16em;text-align:center;width: 10em;>' + zh_CN.faultStatisticsOfTheDay + '<br><span style=color:white;font-size:2.5em>' + this.props.data.tTotal + '</span>' + zh_CN.platform + '') }}
                                 alignX="middle"
                                 alignY="middle"
                             />
@@ -120,7 +120,7 @@ class Donut extends React.Component {
                         <Guide>
                             <Html
                                 position={["50%", "50%"]}
-                                html={() => { return ('<div style=color:white;font-size:1.16em;text-align:center;width: 10em;>' + zh_CN.faultStatisticsOfTheDay + '<br><span style=color:white;font-size:2.5em>' + this.props.data.chartTotal + '</span>' + zh_CN.platform + '') }}
+                                html={() => { return ('<div style=color:white;font-size:1.16em;text-align:center;width: 10em;>' + zh_CN.faultStatisticsOfTheMonth + '<br><span style=color:white;font-size:2.5em>' + this.props.data.tTotal + '</span>' + zh_CN.platform + '') }}
                                 alignX="middle"
                                 alignY="middle"
                             />

@@ -1,3 +1,6 @@
 // export const API_CHANNEL = '/start?camId=1'
 export const API_STREAM_CHANNELONE = '/stream'
-export const API_CHART = '/HistoryError/today'
+export const API_HISTORYERROR_TODAY = '/HistoryError/today'
+export const API_HISTORYERROR_MONTH = '/HistoryError/month'
+export const API_HISTORYERROR_YEAR = '/HistoryError/year'
+export const API_HISTORYERROR_TOTAL = '/HistoryError/total'

@@ -31,6 +31,7 @@ const zh_CN = {
     'Attribute': '属性',
     'Result':'查询结果',
     'faultStatisticsOfTheDay': '当日故障统计',
+    'faultStatisticsOfTheMonth': '当月故障统计',
     'platform': '台'
 }
 

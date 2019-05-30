@@ -14,7 +14,7 @@ import Map from '../Video/Map/Map'
 
 import { getChannelList } from '../../actions/apps'
 import { Col, Row } from 'antd';
-import { API_CHART } from '../../constants/API'
+import { API_HISTORYERROR_TODAY } from '../../constants/API'
 import zh_CN from '../../i18n/zh_CN'
 // css
 import styles from './Video.scss'
@@ -36,30 +36,18 @@ class Video extends React.Component {
       box1: {
         img: '',
         info: {
-          // CameraID: 'Cam00148',
-          // ErrorType: '蓝屏',
-          // ProductionLineID: 'BJ_01',
-          // Model: 'Lenovo Y470',
-          // Location: 'Beijing',
-          // Date: '2019-04-30 16:59:42'
         },
         channel: '',
       },
       box2: {
         img: '',
         info: {
-          // CameraID: 'Cam00148',
-          // ErrorType: '蓝屏',
-          // ProductionLineID: 'BJ_01',
-          // Model: 'Lenovo Y470',
-          // Location: 'Beijing',
-          // Date: '2019-04-30 16:59:42'
         },
         channel: '',
       },
       chart: {
-        chartData: [],
-        chartTotal: 0
+        tDto: [],
+        tTotal: 0
       },
     }
   }
@@ -92,7 +80,7 @@ class Video extends React.Component {
     let mouth = date.getMonth() + 1;
     let time = date.getFullYear() + '-' + mouth + '-' + date.getDate();
     let params = '?date=' + time;
-    fetch(API_CHART + params).then(res => res.json()).then(json => {
+    fetch(API_HISTORYERROR_TODAY + params).then(res => res.json()).then(json => {
       let data = [
         {
           item: zh_CN.blueScreen,
@@ -109,8 +97,8 @@ class Video extends React.Component {
       ];
       this.setState({
         chart: {
-          chartData: data,
-          chartTotal: json.totalnum
+          tDto: data,
+          tTotal: json.totalnum
         }
       });
     }).catch(err => {
@@ -133,8 +121,8 @@ class Video extends React.Component {
       ];
       this.setState({
         chart: {
-          chartData: data,
-          chartTotal: json.totalnum
+          tDto: data,
+          tTotal: json.totalnum
         }
       });
     })
@@ -143,14 +131,14 @@ class Video extends React.Component {
   getCurrentInfo() {
     let errorType = this.props.channelList.info.ErrorType;
     if (errorType == 'BlueScreen') {
-      this.state.chart.chartData[0].count++;
-      this.state.chart.chartTotal++;
+      this.state.chart.tDto[0].count++;
+      this.state.chart.tTotal++;
     } else if (errorType == 'Smear') {
-      this.state.chart.chartData[1].count++;
-      this.state.chart.chartTotal++;
+      this.state.chart.tDto[1].count++;
+      this.state.chart.tTotal++;
     } else if (errorType == 'Tortuosity') {
-      this.state.chart.chartData[2].count++;
-      this.state.chart.chartTotal++;
+      this.state.chart.tDto[2].count++;
+      this.state.chart.tTotal++;
     }
   }
 
