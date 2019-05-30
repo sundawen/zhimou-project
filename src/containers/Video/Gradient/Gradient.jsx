@@ -110,13 +110,29 @@ class Gradient extends React.Component {
             <Spin spinning={loading.gradent}>
                 <div>
                     <Chart height={300} data={dv} scale={cols} forceFit className={styles.wrapper}>
-                        <Legend />
-                        <Axis name="Month" />
+                        <Legend/>
+                        <Axis name="Month"
+                            label={{
+                                textStyle: {
+                                    fontWeight: 200,
+                                    fill: 'white',
+                                },
+                            }}
+                        />
                         <Axis
                             name="num"
                             label={{
-                                formatter: val => `${val}`
+                                formatter: val => `${val}`,
+                                textStyle: {
+                                    fontWeight: 200,
+                                    fill: 'white',
+                                  },
                             }}
+                            grid={{
+                                lineStyle: {
+                                  stroke: 'rgba(255,255,255,.255)',
+                                },
+                              }}
                         />
                         <Tooltip
                             crosshairs={{
