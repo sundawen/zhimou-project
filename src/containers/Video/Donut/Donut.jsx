@@ -11,8 +11,6 @@ class Donut extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            tDto: [],
-            tTotal: 0
         }
     }
 
@@ -26,7 +24,14 @@ class Donut extends React.Component {
         const { DataView } = DataSet;
         const { Html } = Guide;
         const dv = new DataView();
-        dv.source(this.props.data.tDto).transform({
+        const dv2 = new DataView();
+        dv.source(this.props.data[0].tDto).transform({
+            type: "percent",
+            field: "count",
+            dimension: "item",
+            as: "percent"
+        });
+        dv2.source(this.props.data[1].mDto).transform({
             type: "percent",
             field: "count",
             dimension: "item",
@@ -45,10 +50,10 @@ class Donut extends React.Component {
             <Row>
                 <Col span={12}>
                     <Chart
-                        height={300}
+                        height={280}
                         data={dv}
                         scale={cols}
-                        padding={[70, 20, 20, 20]}
+                        padding={[70, 20, 20, 10]}
                         forceFit
                     >
                         <Coord type={"theta"} radius={0.9} innerRadius={0.8} />
@@ -65,7 +70,7 @@ class Donut extends React.Component {
                         <Guide>
                             <Html
                                 position={["50%", "50%"]}
-                                html={() => { return ('<div style=color:white;font-size:1.16em;text-align:center;width: 10em;>' + zh_CN.faultStatisticsOfTheDay + '<br><span style=color:white;font-size:2.5em>' + this.props.data.tTotal + '</span>' + zh_CN.platform + '') }}
+                                html={() => { return ('<div style=color:white;font-size:1.16em;text-align:center;width: 10em;>' + zh_CN.faultStatisticsOfTheDay + '<br><span style=color:white;font-size:2.5em>' + this.props.data[0].tTotal + '</span>' + zh_CN.platform + '') }}
                                 alignX="middle"
                                 alignY="middle"
                             />
@@ -100,8 +105,8 @@ class Donut extends React.Component {
                 </Col>
                 <Col span={12}>
                     <Chart
-                        height={300}
-                        data={dv}
+                        height={280}
+                        data={dv2}
                         scale={cols}
                         padding={[70, 20, 20, 20]}
                         forceFit
@@ -120,7 +125,7 @@ class Donut extends React.Component {
                         <Guide>
                             <Html
                                 position={["50%", "50%"]}
-                                html={() => { return ('<div style=color:white;font-size:1.16em;text-align:center;width: 10em;>' + zh_CN.faultStatisticsOfTheMonth + '<br><span style=color:white;font-size:2.5em>' + this.props.data.tTotal + '</span>' + zh_CN.platform + '') }}
+                                html={() => { return ('<div style=color:white;font-size:1.16em;text-align:center;width: 10em;>' + zh_CN.faultStatisticsOfTheMonth + '<br><span style=color:white;font-size:2.5em>' + this.props.data[1].mTotal + '</span>' + zh_CN.platform + '') }}
                                 alignX="middle"
                                 alignY="middle"
                             />
