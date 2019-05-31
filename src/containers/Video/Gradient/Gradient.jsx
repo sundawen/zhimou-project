@@ -13,7 +13,8 @@ class Gradient extends React.Component {
         super(props)
         this.state = {
             loading: { gradent: false },
-            data: []
+            data: [],
+            month:['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
         }
     }
 
@@ -25,22 +26,13 @@ class Gradient extends React.Component {
     }
 
     getYearData() {
-        const { loading } = this.state;
+        const { loading, month } = this.state;
         loading.gradent = true;
         this.setState({ loading });
         fetch(API_HISTORYERROR_STATISTIC_PERIOD + 'year').then(res => res.json()).then(data => {
-            data[0].Month = "Jan";
-            data[1].Month = "Feb";
-            data[2].Month = "Mar";
-            data[3].Month = "Apr";
-            data[4].Month = "May";
-            data[5].Month = "Jun";
-            data[6].Month = "Jul";
-            data[7].Month = "Aug";
-            data[8].Month = "Sep";
-            data[9].Month = "Oct";
-            data[10].Month = "Nov";
-            data[11].Month = "Dec";
+            for ( let i = 0; i < data.length; i++) {
+                data[i].Month = month[i];
+            }
             this.setState({
                 data: data
             });
@@ -63,18 +55,9 @@ class Gradient extends React.Component {
                 { Month: "11", BlueScreen: 14, Smear: 23, Tortuosity: 7 },
                 { Month: "12", BlueScreen: 9, Smear: 12, Tortuosity: 23 }
             ];
-            data[0].Month = "Jan";
-            data[1].Month = "Feb";
-            data[2].Month = "Mar";
-            data[3].Month = "Apr";
-            data[4].Month = "May";
-            data[5].Month = "Jun";
-            data[6].Month = "Jul";
-            data[7].Month = "Aug";
-            data[8].Month = "Sep";
-            data[9].Month = "Oct";
-            data[10].Month = "Nov";
-            data[11].Month = "Dec";
+            for ( let i = 0; i < data.length; i++) {
+                data[i].Month = month[i];
+            }
             this.setState({
                 data: data
             });
