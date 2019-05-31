@@ -433,10 +433,54 @@ class FaultChart extends React.Component {
                         <Col span={24} style={{padding: '0 32px'}}>
                           <Spin spinning={loading.chart}>
                             <Chart height={360} data={data} forceFit scale={scale}>
-                              <Legend />
-                              <Axis name="date" />
-                              <Axis name="num" />
-                              <Tooltip />
+                              <Legend
+                                textStyle={{ fill: 'white', fontSize: 12 }}
+                              />
+                              <Axis name="date"
+                                label={{
+                                  textStyle: {
+                                    fontWeight: 200,
+                                    fill: 'white',
+                                  },
+                                }}
+                                line={{
+                                  width: 1,
+                                  stroke: '#323448',
+                                }}
+                                grid={{
+                                  lineStyle: {
+                                    lineWidth: 1,
+                                    stroke: '#323448',
+                                    lineDash: [2, 0],
+                                  },
+                                }}
+                              />
+                              <Axis name="num"
+                                label={{
+                                  formatter: val => `${val}`,
+                                  textStyle: {
+                                    fontWeight: 200,
+                                    fill: 'white',
+                                  },
+                                }}
+                                grid={{
+                                  lineStyle: {
+                                    stroke: 'rgba(255,255,255,.255)',
+                                  },
+                                }}
+                                line={{
+                                  width: 1,
+                                  stroke: '#323448',
+                                }}
+                              />
+                              <Tooltip
+                                crosshairs
+                                crossLine={{
+                                  lineDash: [2, 3],
+                                  lineWidth: 1,
+                                  stroke: 'rgba(255, 255, 255, 0.3)',
+                                }}
+                              />
                               <Geom
                                 type="intervalStack"
                                 position="date*num"
