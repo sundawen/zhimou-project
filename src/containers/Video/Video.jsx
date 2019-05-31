@@ -14,7 +14,7 @@ import Map from '../Video/Map/Map'
 
 import { getChannelList } from '../../actions/apps'
 import { Col, Row } from 'antd';
-import { API_HISTORYERROR_TODAY, API_HISTORYERROR_MONTH } from '../../constants/API'
+import { API_HISTORYERROR_STATISTIC_PERIOD } from '../../constants/API'
 import zh_CN from '../../i18n/zh_CN'
 // css
 import styles from './Video.scss'
@@ -58,12 +58,8 @@ class Video extends React.Component {
     this.props.getChannelList()
   }
   componentDidMount = () => {
-    let date = new Date();
-    let mouth = date.getMonth() + 1;
-    let time = date.getFullYear() + '-' + mouth + '-' + date.getDate();
-    let params = '?date=' + time;
-    let apiT = API_HISTORYERROR_TODAY + params;
-    let apiM = API_HISTORYERROR_MONTH + params;
+    let apiT = API_HISTORYERROR_STATISTIC_PERIOD + 'today';
+    let apiM = API_HISTORYERROR_STATISTIC_PERIOD + 'month';
     this.getDonutData(apiT, 'today');
     this.getDonutData(apiM, 'month');
   }

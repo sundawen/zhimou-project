@@ -19,6 +19,7 @@ import { Chart, Tooltip, Axis, Legend, Geom} from 'bizcharts';
 import { getTimeDistance } from '../../../utils/utils';
 import locale from 'antd/lib/date-picker/locale/zh_CN';
 import zh_CN from '../../../i18n/zh_CN'
+import { API_HISTORYERROR_TOTAL, API_HISTORYERROR_DETAILS } from '../../../constants/API'
 
 // css
 import styles from './FaultChart.scss';
@@ -64,8 +65,8 @@ class FaultChart extends React.Component {
       },
       sortedInfo      : {},                    // 排序
       apiUrl          : {                        // API URL
-        queryHistoryError       : '/HistoryError/total',
-        queryHistoryErrorDetails: '/HistoryError/details',
+        queryHistoryError       : API_HISTORYERROR_TOTAL,
+        queryHistoryErrorDetails: API_HISTORYERROR_DETAILS,
       },
       camIds          : [{                       // camId 集合
         camId: 1, title: zh_CN.video1,

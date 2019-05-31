@@ -5,7 +5,7 @@ import zh_CN from '../../../i18n/zh_CN'
 import { Chart, Geom, Axis, Tooltip, Legend } from "bizcharts";
 import DataSet from "@antv/data-set";
 import { Spin } from 'antd';
-import { API_HISTORYERROR_YEAR } from '../../../constants/API'
+import { API_HISTORYERROR_STATISTIC_PERIOD } from '../../../constants/API'
 
 class Gradient extends React.Component {
 
@@ -28,11 +28,7 @@ class Gradient extends React.Component {
         const { loading } = this.state;
         loading.gradent = true;
         this.setState({ loading });
-        let date = new Date();
-        let mouth = date.getMonth() + 1;
-        let time = date.getFullYear() + '-' + mouth + '-' + date.getDate();
-        let params = '?date=' + time;
-        fetch(API_HISTORYERROR_YEAR + params).then(res => res.json()).then(data => {
+        fetch(API_HISTORYERROR_STATISTIC_PERIOD + 'year').then(res => res.json()).then(data => {
             data[0].Month = "Jan";
             data[1].Month = "Feb";
             data[2].Month = "Mar";
@@ -110,7 +106,9 @@ class Gradient extends React.Component {
             <Spin spinning={loading.gradent}>
                 <div>
                     <Chart height={300} data={dv} scale={cols} forceFit className={styles.wrapper}>
-                        <Legend/>
+                        <Legend 
+                            textStyle={{fill:'white',fontSize:12}}
+                        />
                         <Axis name="Month"
                             label={{
                                 textStyle: {

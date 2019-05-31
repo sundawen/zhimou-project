@@ -50,18 +50,19 @@ class Donut extends React.Component {
             <Row>
                 <Col span={12}>
                     <Chart
-                        height={280}
+                        height={230}
                         data={dv}
                         scale={cols}
-                        padding={[70, 20, 20, 10]}
+                        padding={[70, 20, 20, 20]}
                         forceFit
                     >
-                        <Coord type={"theta"} radius={0.9} innerRadius={0.8} />
+                        <Coord type={"theta"} radius={0.9} innerRadius={0} />
                         <Axis name="percent" />
                         <Legend
                             position="right"
                             offsetY={-300 / 2 + 120}
-                            offsetX={-100}
+                            offsetX={-80}
+                            textStyle={{fill:'white',fontSize:12}}
                         />
                         <Tooltip
                             showTitle={false}
@@ -97,7 +98,7 @@ class Donut extends React.Component {
                             <Label
                                 content="percent"
                                 formatter={(val, item) => {
-                                    return item.point.item;
+                                    return '';//item.point.item
                                 }}
                             />
                         </Geom>
@@ -105,18 +106,19 @@ class Donut extends React.Component {
                 </Col>
                 <Col span={12}>
                     <Chart
-                        height={280}
+                        height={230}
                         data={dv2}
                         scale={cols}
                         padding={[70, 20, 20, 20]}
                         forceFit
                     >
-                        <Coord type={"theta"} radius={0.9} innerRadius={0.8} />
+                        <Coord type={"theta"} radius={0.9} innerRadius={0} />
                         <Axis name="percent" />
                         <Legend
                             position="right"
                             offsetY={-300 / 2 + 120}
-                            offsetX={-100}
+                            offsetX={-80}
+                            textStyle={{fill:'white', fontSize:12}}
                         />
                         <Tooltip
                             showTitle={false}
@@ -152,7 +154,7 @@ class Donut extends React.Component {
                             <Label
                                 content="percent"
                                 formatter={(val, item) => {
-                                    return item.point.item;
+                                    return ''; //item.point.item
                                 }}
                             />
                         </Geom>
