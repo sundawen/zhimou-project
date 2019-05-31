@@ -116,6 +116,17 @@ class Gradient extends React.Component {
                                     fill: 'white',
                                 },
                             }}
+                            line={{
+                                width: 1,
+                                stroke: '#323448',
+                              }}
+                            grid={{
+                            lineStyle: {
+                                lineWidth: 1,
+                                stroke: '#323448',
+                                lineDash: [2, 0],
+                            },
+                            }}
                         />
                         <Axis
                             name="num"
@@ -131,10 +142,17 @@ class Gradient extends React.Component {
                                   stroke: 'rgba(255,255,255,.255)',
                                 },
                               }}
+                            line={{
+                            width: 1,
+                            stroke: '#323448',
+                            }}
                         />
                         <Tooltip
-                            crosshairs={{
-                                type: "y"
+                            crosshairs
+                            crossLine={{
+                                lineDash: [2, 3],
+                                lineWidth: 1,
+                                stroke: 'rgba(255, 255, 255, 0.3)',
                             }}
                         />
                         <Geom

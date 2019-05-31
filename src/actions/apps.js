@@ -1,9 +1,5 @@
 import * as types from '../constants/ActionTypes'
-// import RestUtil from '../utils/RestUtil'
-import {
-  // API_CHANNEL,
-  API_STREAM_CHANNELONE,
-} from '../constants/API'
+import { API_STREAM_CHANNELONE } from '../constants/API'
 
 export const getChannelList = () => {
   const source = new EventSource(API_STREAM_CHANNELONE);
@@ -31,7 +27,6 @@ export const getChannelList = () => {
           payload: data.message
         })
       }, false);
-      // await RestUtil.get(API_CHANNEL)
     } catch (e) {
       console.error(e)
     }
