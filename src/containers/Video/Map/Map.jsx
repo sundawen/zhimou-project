@@ -4,6 +4,7 @@ import { injectIntl } from 'react-intl'
 import echarts from 'echarts'
 import initChinaMap from './china'
 import styles from './Map.scss'
+import zh_CN from '../../../i18n/zh_CN'
 
 const data = require('./map.json');
 
@@ -113,16 +114,16 @@ class Map extends React.Component {
                     fontSize: 12,
                 },
                 splitList: [
-                    { start: 100 },
-                    { start: 50, end: 100 },
-                    { start: 0, end: 50 },
-                    { end: 0 },
+                    { start: 50 },
+                    // { start: 25, end: 50 },
+                    { start: 0, end: 25 },
+                    // { end: 0 },
                 ],
-                color: ['#089E50', '#ffff00', '#E93323', '#ffffff'],
+                color: ['#089E50', '#E93323', ],
             },
             // 配置属性
             series: [{
-                name: '工厂设备',
+                name: zh_CN.equipment,
                 type: 'map',
                 mapType: 'china',
                 roam: true,

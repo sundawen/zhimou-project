@@ -16,7 +16,7 @@ class Head extends React.Component {
       <Row gutter={16} className={styles.wrapper}>
         <Col span={8}>
           <NavLink exact to='/video'>
-            <ImgVMiddle style={{ width: '90px', height: '30px' }} image={LENOVOLOGO} alt="logo" />
+            <ImgVMiddle style={{ width: '135px', height: '45px' }} image={LENOVOLOGO} alt="logo" />
           </NavLink>
         </Col>
         <Col span={8} className={styles.middle}>

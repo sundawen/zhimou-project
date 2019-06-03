@@ -2,7 +2,7 @@ $fontFamily: "Roboto-Regular";
 $fontColor: #09aff1;
 $fontColorActive: #07fbe6f3;
 .wrapper {
-  height: 60px;
+  height: 100px;
   width: 100%;
   top: 0;
   background: url('../../components/head.png') no-repeat;
@@ -11,16 +11,16 @@ $fontColorActive: #07fbe6f3;
   z-index: 9998;
   transition: top 1s ease; // dashboard full screen switch
   img {
-    margin: 5px 40px;
+    margin-left: 15px;
   }
   .left {
     padding: 5px 0 0 63px;
   }
   .middle {
-    color: $fontColor;
+    color: #0786f3;
     text-align: center;
-    line-height: 60px;
+    line-height: 45px;
     font-family: 'MFYueYuan_Noncommercial-Regular';
-    font-size: 30px;
+    font-size: 32px;
   }
 }

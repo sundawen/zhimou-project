@@ -83,27 +83,25 @@ class Video extends React.Component {
 
   getDonutData(api, tag) {
     fetch(api, { method: 'get' }).then(res => res.json()).then(json => {
-      if (json.totalnum & json.info) {
-        let data = [
-          {
-            item: zh_CN.blueScreen,
-            count: json.info.BuleScreen
-          },
-          {
-            item: zh_CN.smear,
-            count: json.info.Smear
-          },
-          {
-            item: zh_CN.tortuosity,
-            count: json.info.Tortuosity
-          }
-        ];
-        this.switchDonut(data, json, tag);
-      }
+      let data = [
+        {
+          item: zh_CN.blueScreen,
+          count: json.info.BlueScreen
+        },
+        {
+          item: zh_CN.smear,
+          count: json.info.Smear
+        },
+        {
+          item: zh_CN.tortuosity,
+          count: json.info.Tortuosity
+        }
+      ];
+      this.switchDonut(data, json, tag);
     }).catch(err => {
       // 测试代码数据
       console.log('测试数据');
-      let json = { "totalnum": 50, "info": { "BlueScreen": 20, "Smear": 5, "Tortuosity": 25 } };
+      let json = { "totalnum": 45, "info": { "BlueScreen": 20, "Smear": 5, "Tortuosity": 25 } };
       let data = [
         {
           item: zh_CN.blueScreen,
@@ -124,21 +122,23 @@ class Video extends React.Component {
 
   addDonutNum() {
     let errorType = this.props.channelList.info.ErrorType;
-    if (errorType == 'BlueScreen') {
-      this.state.chart[0].tDto[0].count++;
-      this.state.chart[0].tTotal++;
-      this.state.chart[1].mDto[0].count++;
-      this.state.chart[1].mTotal++;
-    } else if (errorType == 'Smear') {
-      this.state.chart[0].tDto[1].count++;
-      this.state.chart[0].tTotal++;
-      this.state.chart[1].mDto[1].count++;
-      this.state.chart[1].mTotal++;
-    } else if (errorType == 'Tortuosity') {
-      this.state.chart[0].tDto[2].count++;
-      this.state.chart[0].tTotal++;
-      this.state.chart[1].mDto[2].count++;
-      this.state.chart[1].mTotal++;
+    if (this.state.chart[0].tTotal & this.state.chart[1].mTotal) {
+      if (errorType == 'BlueScreen') {
+        this.state.chart[0].tDto[0].count++;
+        this.state.chart[0].tTotal++;
+        this.state.chart[1].mDto[0].count++;
+        this.state.chart[1].mTotal++;
+      } else if (errorType == 'Smear') {
+        this.state.chart[0].tDto[1].count++;
+        this.state.chart[0].tTotal++;
+        this.state.chart[1].mDto[1].count++;
+        this.state.chart[1].mTotal++;
+      } else if (errorType == 'Tortuosity') {
+        this.state.chart[0].tDto[2].count++;
+        this.state.chart[0].tTotal++;
+        this.state.chart[1].mDto[2].count++;
+        this.state.chart[1].mTotal++;
+      }
     }
   }
 
@@ -190,7 +190,7 @@ class Video extends React.Component {
             <VideoBox1 videoBox1Data={this.state.box1} />
             <VideoBox2 videoBox2Data={this.state.box2} />
           </Col>
-          <Col xl={8} lg={24} md={24} sm={24} xs={24}>
+          <Col xl={8} lg={24} md={24} sm={24} xs={24} className={styles.charts}>
             <Donut data={chart} />
             <Gradient />
             <Map />

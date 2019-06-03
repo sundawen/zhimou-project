@@ -90,7 +90,7 @@ class Gradient extends React.Component {
         return (
             <Spin spinning={loading.gradent}>
                 <div>
-                    <Chart height={300} data={dv} scale={cols} forceFit className={styles.wrapper}>
+                    <Chart height={250} data={dv} scale={cols} forceFit className={styles.wrapper}>
                         <Legend 
                             textStyle={{fill:'white',fontSize:12}}
                         />

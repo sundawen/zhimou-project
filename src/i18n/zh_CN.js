@@ -32,7 +32,8 @@ const zh_CN = {
     'Result':'查询结果',
     'faultStatisticsOfTheDay': '当日故障统计',
     'faultStatisticsOfTheMonth': '当月故障统计',
-    'platform': '台'
+    'platform': '台',
+    'equipment': '5G智慧工厂设备'
 }
 
 export default zh_CN;

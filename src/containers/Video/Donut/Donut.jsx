@@ -48,20 +48,20 @@ class Donut extends React.Component {
 
         return (
             <Row>
-                <Col span={12}>
+                <Col span={10}>
                     <Chart
-                        height={230}
+                        height={220}
                         data={dv}
                         scale={cols}
-                        padding={[80, 20, 20, 20]}
+                        padding={[80, 20, 20, 10]}
                         forceFit
                     >
                         <Coord type={"theta"} radius={0.9} innerRadius={0} />
                         <Axis name="percent" />
                         <Legend
                             position="right"
-                            offsetY={-300 / 2 + 120}
-                            offsetX={-80}
+                            offsetY={-300 / 2 + 150}
+                            offsetX={-45}
                             textStyle={{fill:'white',fontSize:12}}
                         />
                         <Tooltip
@@ -71,7 +71,7 @@ class Donut extends React.Component {
                         <Guide>
                             <Html
                                 position={["50%", "15%"]}
-                                html={() => { return ('<div style=color:white;font-size:1.16em;text-align:center;width:10em;position:relative;bottom:40px;left:20px>' + zh_CN.faultStatisticsOfTheDay + '<span style=color:white;font-size:2.5em;>' + this.props.data[0].tTotal + '</span>' + zh_CN.platform + '') }}
+                                html={() => { return ('<div style=color:white;font-size:1.16em;text-align:center;width:13em;position:relative;bottom:40px;left:20px>' + zh_CN.faultStatisticsOfTheDay + '<span style=color:white;font-size:2.5em;>' + this.props.data[0].tTotal + '</span>' + zh_CN.platform + '') }}
                                 alignX="middle"
                                 alignY="middle"
                             />
@@ -104,20 +104,21 @@ class Donut extends React.Component {
                         </Geom>
                     </Chart>
                 </Col>
-                <Col span={12}>
+                <Col span={2}></Col>
+                <Col span={10}>
                     <Chart
-                        height={230}
+                        height={220}
                         data={dv2}
                         scale={cols}
-                        padding={[80, 20, 20, 20]}
+                        padding={[80, 20, 20, 10]}
                         forceFit
                     >
                         <Coord type={"theta"} radius={0.9} innerRadius={0} />
                         <Axis name="percent" />
                         <Legend
                             position="right"
-                            offsetY={-300 / 2 + 120}
-                            offsetX={-80}
+                            offsetY={-300 / 2 + 150}
+                            offsetX={-45}
                             textStyle={{fill:'white', fontSize:12}}
                         />
                         <Tooltip
@@ -127,7 +128,7 @@ class Donut extends React.Component {
                         <Guide>
                             <Html
                                 position={["50%", "15%"]}
-                                html={() => { return ('<div style=color:white;font-size:1.16em;text-align:center;width:10em;position:relative;bottom:40px;left:20px>' + zh_CN.faultStatisticsOfTheMonth + '<span style=color:white;font-size:2.5em>' + this.props.data[1].mTotal + '</span>' + zh_CN.platform + '') }}
+                                html={() => { return ('<div style=color:white;font-size:1.16em;text-align:center;width:13em;position:relative;bottom:40px;left:20px>' + zh_CN.faultStatisticsOfTheMonth + '<span style=color:white;font-size:2.5em>' + this.props.data[1].mTotal + '</span>' + zh_CN.platform + '') }}
                                 alignX="middle"
                                 alignY="middle"
                             />
@@ -160,6 +161,7 @@ class Donut extends React.Component {
                         </Geom>
                     </Chart>
                 </Col>
+                <Col span={2}></Col>
             </Row>
 
         )
