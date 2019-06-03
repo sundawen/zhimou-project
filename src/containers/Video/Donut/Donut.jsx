@@ -53,7 +53,7 @@ class Donut extends React.Component {
                         height={230}
                         data={dv}
                         scale={cols}
-                        padding={[70, 20, 20, 20]}
+                        padding={[80, 20, 20, 20]}
                         forceFit
                     >
                         <Coord type={"theta"} radius={0.9} innerRadius={0} />
@@ -70,8 +70,8 @@ class Donut extends React.Component {
                         />
                         <Guide>
                             <Html
-                                position={["50%", "50%"]}
-                                html={() => { return ('<div style=color:white;font-size:1.16em;text-align:center;width: 10em;>' + zh_CN.faultStatisticsOfTheDay + '<br><span style=color:white;font-size:2.5em>' + this.props.data[0].tTotal + '</span>' + zh_CN.platform + '') }}
+                                position={["50%", "15%"]}
+                                html={() => { return ('<div style=color:white;font-size:1.16em;text-align:center;width:10em;position:relative;bottom:40px>' + zh_CN.faultStatisticsOfTheDay + '<span style=color:white;font-size:2.5em;>' + this.props.data[0].tTotal + '</span>' + zh_CN.platform + '') }}
                                 alignX="middle"
                                 alignY="middle"
                             />
@@ -109,7 +109,7 @@ class Donut extends React.Component {
                         height={230}
                         data={dv2}
                         scale={cols}
-                        padding={[70, 20, 20, 20]}
+                        padding={[80, 20, 20, 20]}
                         forceFit
                     >
                         <Coord type={"theta"} radius={0.9} innerRadius={0} />
@@ -126,8 +126,8 @@ class Donut extends React.Component {
                         />
                         <Guide>
                             <Html
-                                position={["50%", "50%"]}
-                                html={() => { return ('<div style=color:white;font-size:1.16em;text-align:center;width: 10em;>' + zh_CN.faultStatisticsOfTheMonth + '<br><span style=color:white;font-size:2.5em>' + this.props.data[1].mTotal + '</span>' + zh_CN.platform + '') }}
+                                position={["50%", "15%"]}
+                                html={() => { return ('<div style=color:white;font-size:1.16em;text-align:center;width:10em;position:relative;bottom:40px>' + zh_CN.faultStatisticsOfTheMonth + '<span style=color:white;font-size:2.5em>' + this.props.data[1].mTotal + '</span>' + zh_CN.platform + '') }}
                                 alignX="middle"
                                 alignY="middle"
                             />

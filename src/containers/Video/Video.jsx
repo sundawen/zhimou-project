@@ -83,25 +83,27 @@ class Video extends React.Component {
 
   getDonutData(api, tag) {
     fetch(api, { method: 'get' }).then(res => res.json()).then(json => {
-      let data = [
-        {
-          item: zh_CN.blueScreen,
-          count: json.info.BuleScreen
-        },
-        {
-          item: zh_CN.smear,
-          count: json.info.Smear
-        },
-        {
-          item: zh_CN.tortuosity,
-          count: json.info.Tortuosity
-        }
-      ];
-      this.switchDonut(data, json, tag);
+      if (json.totalnum & json.info) {
+        let data = [
+          {
+            item: zh_CN.blueScreen,
+            count: json.info.BuleScreen
+          },
+          {
+            item: zh_CN.smear,
+            count: json.info.Smear
+          },
+          {
+            item: zh_CN.tortuosity,
+            count: json.info.Tortuosity
+          }
+        ];
+        this.switchDonut(data, json, tag);
+      }
     }).catch(err => {
       // 测试代码数据
       console.log('测试数据');
-      let json = { "totalnum": 30, "info": { "BlueScreen": 10, "Smear": 5, "Tortuosity": 15 } };
+      let json = { "totalnum": 50, "info": { "BlueScreen": 20, "Smear": 5, "Tortuosity": 25 } };
       let data = [
         {
           item: zh_CN.blueScreen,

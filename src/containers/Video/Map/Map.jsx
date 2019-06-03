@@ -122,13 +122,13 @@ class Map extends React.Component {
             },
             // 配置属性
             series: [{
-                name: '数据',
+                name: '工厂设备',
                 type: 'map',
                 mapType: 'china',
                 roam: true,
                 label: {
                     normal: {
-                        show: true, // 省份名称
+                        show: false, // 省份名称
                     },
                     emphasis: {
                         show: false,

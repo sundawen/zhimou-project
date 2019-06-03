@@ -30,14 +30,16 @@ class Gradient extends React.Component {
         loading.gradent = true;
         this.setState({ loading });
         fetch(API_HISTORYERROR_STATISTIC_PERIOD + 'year').then(res => res.json()).then(data => {
-            for ( let i = 0; i < data.length; i++) {
-                data[i].Month = month[i];
+            if (data.length) {
+                for (let i = 0; i < data.length; i++) {
+                    data[i].Month = month[i];
+                }
+                this.setState({
+                    data: data
+                });
+                loading.gradent = false;
+                this.setState({ loading });
             }
-            this.setState({
-                data: data
-            });
-            loading.gradent = false;
-            this.setState({ loading });
         }).catch(err => {
             // 测试代码数据
             console.log('全年折线图为测试数据');
