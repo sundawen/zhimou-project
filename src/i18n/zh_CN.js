@@ -36,7 +36,7 @@ const zh_CN = {
     'equipment': '5G智慧工厂设备',
     'factoryInChina': '全国5G智慧工厂分布',
     'ordinaryFactory': '普通工厂',
-    'smartFactory': '智慧工厂',
+    'smartFactory': '5G智慧工厂',
     'high': '高',
     'low': '低'
 }
