@@ -6,6 +6,7 @@ import zh_CN from '../../../i18n/zh_CN'
 import bg from '../../../components/backGround.png'
 import videojs from 'video.js';
 import 'video.js/dist/video-js.min.css';
+import { API_FAKEVIDEO } from '../../../constants/API'
 
 const { Content } = Layout;
 
@@ -13,8 +14,16 @@ class VideoBox2 extends React.Component {
 
   constructor(props) {
     super(props)
-
+    // let url = window.location.host
+    // if (url) {
+    //   if (url.indexOf(':') != -1 && window.location.port) {
+    //     url = url.substring(0, url.indexOf(window.location.port) - 1);
+    //   }
+    // }
+    // let player2 = 'rtmp://' + url + ':' + '6666' + '/live/room2';
+    // console.log('player2 url', player2)
     this.state = {
+      // player2: player2,
       width: '100%',
       minHeight: '100%',
       height: '100%',
@@ -22,17 +31,19 @@ class VideoBox2 extends React.Component {
   }
 
   componentDidMount() {
-    this.player = videojs('video2', {}, function onPlayerReady() {
-      this.play();
-    })
+    // this.player = videojs('video2', {}, function onPlayerReady() {
+    //   this.play();
+    // })
   }
 
   componentWillUnmount() {
-    if (this.player) {
-      this.player.dispose()
-    }
+    // if (this.player) {
+    //   this.player.dispose()
+    // }
   }
+
   render() {
+    // const player2 = this.state.player2
     const videoImg = this.props.videoBox2Data.img;
     return (
       <Content className={styles.wrapper}>
@@ -45,7 +56,7 @@ class VideoBox2 extends React.Component {
                 </div>
                 <div className={styles.cardBack}>
                   <div className={styles.cardHeight}>
-                    <video
+                    {/* <video
                       style={{ minHeight: this.state.minHeight, height: this.state.height, width: this.state.width }}
                       className="video-js"
                       id="video2"
@@ -54,8 +65,13 @@ class VideoBox2 extends React.Component {
                       autoPlay="autoPlay"
                       loop="loop"
                       preload="none">
-                      <source src="rtmp://10.112.57.54:1935/live/room2" type="rtmp/flv" />
-                    </video>
+                      <source src={player2} type="rtmp/flv" />
+                    </video> */}
+                    <img
+                      style={{ minHeight: this.state.minHeight, height: this.state.height, width: this.state.width }}
+                      src={API_FAKEVIDEO}
+                      onError={(e) => { e.target.onerror = null; e.target.src = bg }}
+                    />
                   </div>
                 </div>
               </Col>

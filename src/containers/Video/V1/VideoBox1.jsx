@@ -13,7 +13,16 @@ class VideoBox1 extends React.Component {
 
   constructor(props) {
     super(props)
+    let url = window.location.host
+    if (url) {
+      if (url.indexOf(':') != -1 && window.location.port) {
+        url = url.substring(0, url.indexOf(window.location.port) - 1);
+      }
+    }
+    let player1 = 'rtmp://' + url + ':' + '6666' + '/live/room';
+    console.log('player1 url', player1)
     this.state = {
+      player1: player1,
       width:'100%',
       minHeight: '100%',
       height: '100%',
@@ -33,6 +42,7 @@ class VideoBox1 extends React.Component {
   }
 
     render() {
+      const player1 = this.state.player1
       const videoImg = this.props.videoBox1Data.img
         return (
           <Content className={styles.wrapper}>
@@ -53,8 +63,8 @@ class VideoBox1 extends React.Component {
                           controls 
                           autoPlay="autoPlay"
                           loop="loop"
-                          preload="none">
-                          <source src="rtmp://10.112.57.54:1935/live/room" type="rtmp/flv" />
+                          preload="none"> 
+                          <source src={player1} type="rtmp/flv" />
                         </video>
                       </div>
                     </div>

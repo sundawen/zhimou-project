@@ -3,6 +3,7 @@ import { API_STREAM_CHANNELONE } from '../constants/API'
 
 export const getChannelList = () => {
   const source = new EventSource(API_STREAM_CHANNELONE);
+  console.log(source);
   const hp = source.url.substring(0, source.url.indexOf('stream'))
   source.addEventListener('open', () => {
     console.log('Connected');

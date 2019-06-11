@@ -44,18 +44,18 @@ class Gradient extends React.Component {
             // 测试代码数据
             console.log('全年折线图为测试数据');
             let data = [
-                { Month: "1", BlueScreen: 23, Smear: 12, Tortuosity: 5 },
-                { Month: "2", BlueScreen: 4, Smear: 15, Tortuosity: 5 },
-                { month: "3", BlueScreen: 10, Smear: 16, Tortuosity: 8 },
-                { Month: "4", BlueScreen: 11, Smear: 7, Tortuosity: 12 },
-                { Month: "5", BlueScreen: 15, Smear: 12, Tortuosity: 21 },
-                { Month: "6", BlueScreen: 21, Smear: 15, Tortuosity: 7 },
-                { Month: "7", BlueScreen: 25, Smear: 17, Tortuosity: 23 },
-                { Month: "8", BlueScreen: 22, Smear: 6, Tortuosity: 5 },
-                { Month: "9", BlueScreen: 22, Smear: 14, Tortuosity: 12 },
-                { Month: "10", BlueScreen: 17, Smear: 11, Tortuosity: 5 },
-                { Month: "11", BlueScreen: 14, Smear: 23, Tortuosity: 7 },
-                { Month: "12", BlueScreen: 9, Smear: 12, Tortuosity: 23 }
+                { Month: "1", BlueScreen: 23, Scratch: 12, Object: 5 },
+                { Month: "2", BlueScreen: 4, Scratch: 15, Object: 5 },
+                { month: "3", BlueScreen: 10, Scratch: 16, Object: 8 },
+                { Month: "4", BlueScreen: 11, Scratch: 7, Object: 12 },
+                { Month: "5", BlueScreen: 15, Scratch: 12, Object: 21 },
+                { Month: "6", BlueScreen: 21, Scratch: 15, Object: 7 },
+                { Month: "7", BlueScreen: 25, Scratch: 17, Object: 23 },
+                { Month: "8", BlueScreen: 22, Scratch: 6, Object: 5 },
+                { Month: "9", BlueScreen: 22, Scratch: 14, Object: 12 },
+                { Month: "10", BlueScreen: 17, Scratch: 11, Object: 5 },
+                { Month: "11", BlueScreen: 14, Scratch: 23, Object: 7 },
+                { Month: "12", BlueScreen: 9, Scratch: 12, Object: 23 }
             ];
             for ( let i = 0; i < data.length; i++) {
                 data[i].Month = month[i];
@@ -74,13 +74,12 @@ class Gradient extends React.Component {
         const dv = ds.createView().source(data);
         dv.transform({
             type: "fold",
-            fields: ["BlueScreen", "Smear", "Tortuosity"],
+            fields: ["BlueScreen", "Scratch", "Object"],
             // 展开字段集
             key: "city",
             // key字段
             value: "num" // value字段
         });
-        console.log(dv);
         const cols = {
             Month: {
                 range: [0, 1]

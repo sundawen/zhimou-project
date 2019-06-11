@@ -37,9 +37,9 @@ const errorTypes = [{
 }, {
   key: 'BlueScreen', text: zh_CN.blueScreen,
 }, {
-  key: 'Smear', text: zh_CN.smear,
+  key: 'Scratch', text: zh_CN.scratch,
 }, {
-  key: 'Tortuosity', text: zh_CN.tortuosity,
+  key: 'Object', text: zh_CN.object,
 }]
 
 /**
@@ -95,15 +95,15 @@ class FaultChart extends React.Component {
       if (data.hasOwnProperty('length') && data.length > 0) {
         let newData = [
           { name: zh_CN.blueScreen },
-          { name: zh_CN.smear },
-          { name: zh_CN.tortuosity },
+          { name: zh_CN.scratch },
+          { name: zh_CN.object },
         ];
         let fields = [];
         for (let i in data) {
           fields.push(data[i].Date);
           newData[0][data[i].Date] = data[i].BlueScreen;
-          newData[1][data[i].Date] = data[i].Smear;
-          newData[2][data[i].Date] = data[i].Tortuosity;
+          newData[1][data[i].Date] = data[i].Scratch;
+          newData[2][data[i].Date] = data[i].Object;
         }
         this.setState({
           faultData  : newData,
@@ -118,15 +118,15 @@ class FaultChart extends React.Component {
       let data = require('./FaultChartData.json');
       let newData = [
         { name: zh_CN.blueScreen },
-        { name: zh_CN.smear },
-        { name: zh_CN.tortuosity },
+        { name: zh_CN.scratch },
+        { name: zh_CN.object },
       ];
       let fields = [];
       for (let i in data) {
         fields.push(data[i].Date);
         newData[0][data[i].Date] = data[i].BlueScreen;
-        newData[1][data[i].Date] = data[i].Smear;
-        newData[2][data[i].Date] = data[i].Tortuosity;
+        newData[1][data[i].Date] = data[i].Scratch;
+        newData[2][data[i].Date] = data[i].Object;
       }
       this.setState({
         faultData  : newData,

@@ -89,31 +89,31 @@ class Video extends React.Component {
           count: json.info.BlueScreen
         },
         {
-          item: zh_CN.smear,
-          count: json.info.Smear
+          item: zh_CN.scratch,
+          count: json.info.Scratch
         },
         {
-          item: zh_CN.tortuosity,
-          count: json.info.Tortuosity
+          item: zh_CN.object,
+          count: json.info.Object
         }
       ];
       this.switchDonut(data, json, tag);
     }).catch(err => {
       // 测试代码数据
       console.log('测试数据');
-      let json = { "totalnum": 45, "info": { "BlueScreen": 20, "Smear": 5, "Tortuosity": 25 } };
+      let json = { "totalnum": 45, "info": { "BlueScreen": 20, "Scratch": 5, "Object": 25 } };
       let data = [
         {
           item: zh_CN.blueScreen,
           count: json.info.BlueScreen
         },
         {
-          item: zh_CN.smear,
-          count: json.info.Smear
+          item: zh_CN.scratch,
+          count: json.info.Scratch
         },
         {
-          item: zh_CN.tortuosity,
-          count: json.info.Tortuosity
+          item: zh_CN.object,
+          count: json.info.Object
         }
       ];
       this.switchDonut(data, json, tag);
@@ -123,17 +123,17 @@ class Video extends React.Component {
   addDonutNum() {
     let errorType = this.props.channelList.info.ErrorType;
     if (this.state.chart[0].tTotal & this.state.chart[1].mTotal) {
-      if (errorType == 'BlueScreen') {
+      if (errorType == 'BlueScreen' || errorType == 'Bluescreen' || errorType == 'bluescreen' || errorType == 'blueScreen') {
         this.state.chart[0].tDto[0].count++;
         this.state.chart[0].tTotal++;
         this.state.chart[1].mDto[0].count++;
         this.state.chart[1].mTotal++;
-      } else if (errorType == 'Smear') {
+      } else if (errorType == 'Scratch' || errorType == 'scratch') {
         this.state.chart[0].tDto[1].count++;
         this.state.chart[0].tTotal++;
         this.state.chart[1].mDto[1].count++;
         this.state.chart[1].mTotal++;
-      } else if (errorType == 'Tortuosity') {
+      } else if (errorType == 'Object' || errorType == 'object') {
         this.state.chart[0].tDto[2].count++;
         this.state.chart[0].tTotal++;
         this.state.chart[1].mDto[2].count++;
