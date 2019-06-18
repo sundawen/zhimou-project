@@ -11,10 +11,17 @@ class Gradient extends React.Component {
 
     constructor(props) {
         super(props)
+        let myDate = new Date();
         this.state = {
             loading: { gradent: false },
             data: [],
-            month:['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+            month:['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+            yAdd: {
+                'BlueScreen': 0,
+                'Scratch': 0,
+                'Object': 0
+            },
+            currentMonth: myDate.getMonth()
         }
     }
 
@@ -25,14 +32,31 @@ class Gradient extends React.Component {
     componentWillUnmount() {
     }
 
+    componentWillReceiveProps = (nextProps) => {
+        if (this.props.yAdd && this.state.data[this.state.currentMonth]) {
+            this.state.yAdd = this.props.yAdd;
+            let currentData = this.state.data[this.state.currentMonth]
+            this.state.data[this.state.currentMonth][zh_CN.blueScreen] = currentData[zh_CN.blueScreen] + this.state.yAdd.BlueScreen
+            this.state.data[this.state.currentMonth][zh_CN.scratch] = currentData[zh_CN.scratch] + this.state.yAdd.Scratch
+            this.state.data[this.state.currentMonth][zh_CN.object] = currentData[zh_CN.object] + this.state.yAdd.Object
+        }
+      }
+
     getYearData() {
         const { loading, month } = this.state;
         loading.gradent = true;
         this.setState({ loading });
         fetch(API_HISTORYERROR_STATISTIC_PERIOD + 'year').then(res => res.json()).then(data => {
             if (data.length) {
+                let keyMap = {'BlueScreen' : zh_CN.blueScreen, 'Scratch': zh_CN.scratch, 'Object': zh_CN.object}
                 for (let i = 0; i < data.length; i++) {
                     data[i].Month = month[i];
+                    let objs = Object.keys(data[i]).reduce((newData, key) => {
+                        let newKey = keyMap[key] || key
+                        newData[newKey] = data[i][key]
+                        return newData
+                    }, {})
+                    data[i] = objs
                 }
                 this.setState({
                     data: data
@@ -57,8 +81,15 @@ class Gradient extends React.Component {
                 { Month: "11", BlueScreen: 14, Scratch: 23, Object: 7 },
                 { Month: "12", BlueScreen: 9, Scratch: 12, Object: 23 }
             ];
-            for ( let i = 0; i < data.length; i++) {
+            let keyMap = {'BlueScreen' : zh_CN.blueScreen, 'Scratch': zh_CN.scratch, 'Object': zh_CN.object}
+            for (let i = 0; i < data.length; i++) {
                 data[i].Month = month[i];
+                let objs = Object.keys(data[i]).reduce((newData, key) => {
+                    let newKey = keyMap[key] || key
+                    newData[newKey] = data[i][key]
+                    return newData
+                }, {})
+                data[i] = objs
             }
             this.setState({
                 data: data
@@ -74,7 +105,7 @@ class Gradient extends React.Component {
         const dv = ds.createView().source(data);
         dv.transform({
             type: "fold",
-            fields: ["BlueScreen", "Scratch", "Object"],
+            fields: [zh_CN.blueScreen, zh_CN.scratch, zh_CN.object],
             // 展开字段集
             key: "city",
             // key字段

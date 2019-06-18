@@ -1,7 +1,17 @@
 import * as types from '../constants/ActionTypes'
 import { API_STREAM_CHANNELONE } from '../constants/API'
 
-export const getChannelList = () => {
+// 定时器，主要用于 SSE
+const timer = {}
+
+// 清除定时器
+const clearTimer = () => {
+  for (let i in timer) {
+    clearTimeout(timer[i]);
+  }
+}
+
+const getChannelList = () => {
   const source = new EventSource(API_STREAM_CHANNELONE);
   console.log(source);
   const hp = source.url.substring(0, source.url.indexOf('stream'))
@@ -12,6 +22,8 @@ export const getChannelList = () => {
   source.addEventListener('error', e => {
     if (e.target.readyState === EventSource.CLOSED) {
       console.log('Disconnected');
+      // 断连1秒钟后再次发起请求
+      timer['sse'] = setTimeout(getChannelList, 1000);
     } else if (e.target.readyState === EventSource.CONNECTING) {
       console.log('Connecting...');
     }
@@ -34,3 +46,4 @@ export const getChannelList = () => {
   }
 }
 
+export { clearTimer, getChannelList }

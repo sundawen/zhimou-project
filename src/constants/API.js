@@ -1,4 +1,3 @@
-// export const API_CHANNEL = '/start?camId=1'
 export const API_STREAM_CHANNELONE = '/stream'
 export const API_HISTORYERROR_STATISTIC_PERIOD = '/HistoryError/statistic?period='
 export const API_HISTORYERROR_TOTAL = '/HistoryError/total'

@@ -58,7 +58,9 @@ class Map extends React.Component {
                 min: 0,
                 max: 200,
                 right: '10%',
-                top: 'bottom',
+                top: '40%',
+                itemWidth: 8,
+                itemHeight: 50,
                 text:[zh_CN.high, zh_CN.low],
                 calculable : true,
                 textStyle: {
@@ -86,14 +88,13 @@ class Map extends React.Component {
                     {name: '天津',value: Math.round(Math.random()*100)},
                     {name: '上海',value: Math.round(Math.random()*100)},
                     {name: '重庆',value: Math.round(Math.random()*100)},
-                    {name: '河北',value: Math.round(Math.random()*100)},
                     {name: '安徽',value: Math.round(Math.random()*100)},
                     {name: '浙江',value: Math.round(Math.random()*100)},
                     {name: '吉林',value: Math.round(Math.random()*100)},
                     {name: '福建',value: Math.round(Math.random()*100)},
+                    {name: '湖北',value: Math.round(Math.random()*100)},
                     {name: '广东',value: Math.round(Math.random()*100)},
                     {name: '四川',value: Math.round(Math.random()*100)},
-                    {name: '宁夏',value: Math.round(Math.random()*100)},
                     {name: '香港',value: Math.round(Math.random()*100)},
                     {name: '澳门',value: Math.round(Math.random()*100)}
                 ]

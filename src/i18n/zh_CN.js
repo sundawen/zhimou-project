@@ -1,13 +1,13 @@
 const zh_CN = {
     'logoTitle': '智眸 - 5G与边缘计算智慧工厂',
-    'ChannelOne':'中国 武汉 光谷工厂 Thinkpad X1 产线：LNT001',
-    'ChannelTwo':'中国 深圳 南山工厂 联想小新  产线：LNN001',
+    'ChannelOne':'中国 惠阳工厂 PC 产线：LHY001',
+    'ChannelTwo':'中国 深圳工厂 Thinkpad 产线：LSZ001',
     'RealTimeFaultData':'AI实时识别结果',
     'cameraID':'摄像头ID',
     'errorType':'设备故障类型',
     'productionLineID':'生产线ID',
     'model':'故障设备型号',
-    'location':'工厂地址',
+    'location':'工厂名称',
     'date':'故障发生时间',
     'realTimeVideo':'实时监控',
     'historicalRecord':'历史记录',
@@ -29,7 +29,7 @@ const zh_CN = {
     'video2': '监控二',
     'operation': '操作',
     'Attribute': '属性',
-    'Result':'查询结果',
+    'Result':'检测结果',
     'faultStatisticsOfTheDay': '当日故障统计',
     'faultStatisticsOfTheMonth': '当月故障统计',
     'platform': '台',
@@ -38,7 +38,9 @@ const zh_CN = {
     'ordinaryFactory': '普通工厂',
     'smartFactory': '5G智慧工厂',
     'high': '高',
-    'low': '低'
+    'low': '低',
+    'hy': '惠阳',
+    'sz': '深圳'
 }
 
 export default zh_CN;

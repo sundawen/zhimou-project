@@ -14,12 +14,6 @@ class Donut extends React.Component {
         }
     }
 
-    componentDidMount() {
-    }
-
-    componentWillUnmount() {
-    }
-
     render() {
         const { DataView } = DataSet;
         const { Html } = Guide;
@@ -71,7 +65,7 @@ class Donut extends React.Component {
                         <Guide>
                             <Html
                                 position={["50%", "15%"]}
-                                html={() => { return ('<div style=color:white;font-size:1.16em;text-align:center;width:13em;position:relative;bottom:40px;left:20px>' + zh_CN.faultStatisticsOfTheDay + '<span style=color:white;font-size:2.5em;>' + this.props.data[0].tTotal + '</span>' + zh_CN.platform + '') }}
+                                html={() => { return ('<div style=color:white;font-size:1.16em;text-align:center;width:14em;position:relative;bottom:40px;left:20px>' + zh_CN.faultStatisticsOfTheDay + '<span style=color:white;font-size:2.5em;>' + this.props.data[0].tTotal + '</span>' + zh_CN.platform + '') }}
                                 alignX="middle"
                                 alignY="middle"
                             />
@@ -83,7 +77,7 @@ class Donut extends React.Component {
                             tooltip={[
                                 "item*percent",
                                 (item, percent) => {
-                                    percent = percent * 100 + "%";
+                                    percent = (percent * 100).toFixed(2) + "%";
                                     return {
                                         name: item,
                                         value: percent
@@ -128,7 +122,7 @@ class Donut extends React.Component {
                         <Guide>
                             <Html
                                 position={["50%", "15%"]}
-                                html={() => { return ('<div style=color:white;font-size:1.16em;text-align:center;width:13em;position:relative;bottom:40px;left:20px>' + zh_CN.faultStatisticsOfTheMonth + '<span style=color:white;font-size:2.5em>' + this.props.data[1].mTotal + '</span>' + zh_CN.platform + '') }}
+                                html={() => { return ('<div style=color:white;font-size:1.16em;text-align:center;width:14em;position:relative;bottom:40px;left:20px>' + zh_CN.faultStatisticsOfTheMonth + '<span style=color:white;font-size:2.5em>' + this.props.data[1].mTotal + '</span>' + zh_CN.platform + '') }}
                                 alignX="middle"
                                 alignY="middle"
                             />
@@ -140,7 +134,7 @@ class Donut extends React.Component {
                             tooltip={[
                                 "item*percent",
                                 (item, percent) => {
-                                    percent = percent * 100 + "%";
+                                    percent = (percent * 100).toFixed(2) + "%";
                                     return {
                                         name: item,
                                         value: percent

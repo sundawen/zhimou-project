@@ -160,6 +160,12 @@ class FaultChart extends React.Component {
       pagination.total = parseInt(data.totalnum);
       data.totalinfo.forEach((item, key) => {
         item.key = key;
+        if (item.Location == 'Huiyang') {
+          item.Location = zh_CN.hy
+        }
+        if (item.Location == 'Shenzhen') {
+          item.Location = zh_CN.sz
+        }
       });
       this.setState({
         detailsData: data.totalinfo,
@@ -174,6 +180,12 @@ class FaultChart extends React.Component {
       pagination.total = parseInt(data.totalnum);
       data.totalinfo.forEach((item, key) => {
         item.key = key;
+        if (item.Location == 'Huiyang') {
+          item.Location = zh_CN.hy
+        }
+        if (item.Location == 'Shenzhen') {
+          item.Location = zh_CN.sz
+        }
       });
       this.setState({
         detailsData: data.totalinfo,

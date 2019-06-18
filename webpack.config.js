@@ -2,7 +2,7 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 const ProxyConfig = {
-  target: '', // http://10.111.79.140
+  target: '', //http://10.111.79.140
   changeOrigin: true,
   secure: false,
 }
